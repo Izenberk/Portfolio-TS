@@ -1,6 +1,5 @@
 // src/sections/Hero.tsx
 import { motion } from "framer-motion"
-import { AnimatedGridPattern } from "@/components/magicui/animated-grid-pattern"
 import { AuroraText } from "@/components/magicui/aurora-text"
 import { Link as ScrollLink } from "react-scroll"
 import type { JSX } from "react"
@@ -9,9 +8,6 @@ import Section from "@/components/layout/Section"
 export default function Hero(): JSX.Element {
     return (
         <Section id="home" className="relative pt-20 md:pt-28 min-h-[100dvh] overflow-hidden">
-        {/* Background grid */}
-        
-
         <div className="mx-auto max-w-5xl px-4 grid gap-8 pt-4 justify-center items-center">
             <motion.div
             initial={{ opacity: 0, y: 40 }}

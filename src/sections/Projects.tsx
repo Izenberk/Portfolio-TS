@@ -1,11 +1,28 @@
+// src/sections/Projects.tsx
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Github, Info } from "lucide-react";
 import { motion, useInView } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import type { KeyboardEvent } from "react";
 
-const PROJECTS = [
+// ---------- Types ----------
+type Project = {
+    slug: string;
+    title: string;
+    summary: string;
+    details: string[];
+    stack: string[];
+    links: { demo: string; repo: string };
+    image: string;
+    contributors: string;
+};
+
+type ProjectCardProps = { p: Project };
+
+// ---------- Data ----------
+const PROJECTS: Project[] = [
     {
         slug: "hugpaw",
         title: "HugPaw Ecommerce",
@@ -16,7 +33,10 @@ const PROJECTS = [
         "Collaborated in an Agile team using GitHub for version control, issue tracking, and code reviews.",
         ],
         stack: ["React", "Vite", "Tailwind", "Node", "Express", "MongoDB", "shadcn/ui"],
-        links: { demo: "https://hug-paw-ecommerce.vercel.app/", repo: "https://github.com/Izenberk/HugPaw-Ecommerce-Frontend" },
+        links: {
+        demo: "https://hug-paw-ecommerce.vercel.app/",
+        repo: "https://github.com/Izenberk/HugPaw-Ecommerce-Frontend",
+        },
         image: "/images/hugpaw-cover.png",
         contributors: "JSD Bootcamp Team",
     },
@@ -30,31 +50,35 @@ const PROJECTS = [
         "Demonstrated solo project ownership through UI design, feature implementation, and deployment readiness.",
         ],
         stack: ["React", "Node", "Express", "MongoDB", "Tailwind", "shadcn/ui"],
-        links: { demo: "https://dev-link-alpha-seven.vercel.app/", repo: "https://github.com/Izenberk/DevLink" },
+        links: {
+        demo: "https://dev-link-alpha-seven.vercel.app/",
+        repo: "https://github.com/Izenberk/DevLink",
+        },
         image: "/images/devlink-cover.png",
         contributors: "Solo",
     },
 ];
 
-function ProjectCard({ p }) {
-    const [isFlipped, setFlipped] = useState(false);
-    const [hasDemoed, setHasDemoed] = useState(false);
-    const cardRef = useRef(null);
+// ---------- Components ----------
+function ProjectCard({ p }: ProjectCardProps) {
+    const [isFlipped, setFlipped] = useState<boolean>(false);
+    const [hasDemoed, setHasDemoed] = useState<boolean>(false);
+    const cardRef = useRef<HTMLDivElement | null>(null);
     const inView = useInView(cardRef, { amount: 0.4, once: true });
 
     // One-time demo flip when scrolled into view
     useEffect(() => {
         if (inView && !hasDemoed) {
         setFlipped(true);
-        const t = setTimeout(() => {
+        const t = window.setTimeout(() => {
             setFlipped(false);
             setHasDemoed(true);
         }, 1100); // flip back after 1.1s
-        return () => clearTimeout(t);
+        return () => window.clearTimeout(t);
         }
     }, [inView, hasDemoed]);
 
-    const flipOnKey = (e) => {
+    const flipOnKey = (e: KeyboardEvent<HTMLElement>) => {
         if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
         setFlipped((v) => !v);
@@ -109,7 +133,7 @@ function ProjectCard({ p }) {
                 <motion.button
                     type="button"
                     onClick={() => setFlipped(true)}
-                    onKeyDown={(e) => {
+                    onKeyDown={(e: KeyboardEvent<HTMLButtonElement>) => {
                     if (e.key === "Enter" || e.key === " ") {
                         e.preventDefault();
                         setFlipped(true);
@@ -130,24 +154,39 @@ function ProjectCard({ p }) {
                     </h3>
                     <div className="hidden sm:flex items-center gap-2">
                         <Button asChild size="sm" variant="secondary" className="h-8 px-3">
-                        <a href={p.links.demo} target="_blank" rel="noreferrer" aria-label={`${p.title} demo`}>
+                        <a
+                            href={p.links.demo}
+                            target="_blank"
+                            rel="noreferrer"
+                            aria-label={`${p.title} demo`}
+                        >
                             <ExternalLink className="mr-1 h-4 w-4" /> Demo
                         </a>
                         </Button>
                         <Button asChild size="sm" variant="outline" className="h-8 px-3">
-                        <a href={p.links.repo} target="_blank" rel="noreferrer" aria-label={`${p.title} source`}>
+                        <a
+                            href={p.links.repo}
+                            target="_blank"
+                            rel="noreferrer"
+                            aria-label={`${p.title} source`}
+                        >
                             <Github className="mr-1 h-4 w-4" /> Source
                         </a>
                         </Button>
                     </div>
                     </div>
 
-                    <p className="mt-1 text-sm text-muted-foreground/90 leading-relaxed">{p.summary}</p>
+                    <p className="mt-1 text-sm text-muted-foreground/90 leading-relaxed">
+                    {p.summary}
+                    </p>
 
                     <ul className="mt-3 flex flex-wrap gap-2">
-                    {p.stack.map((t) => (
+                    {p.stack.map((t: string) => (
                         <li key={t}>
-                        <Badge variant="secondary" className="rounded-md border border-border/70 bg-accent/60">
+                        <Badge
+                            variant="secondary"
+                            className="rounded-md border border-border/70 bg-accent/60"
+                        >
                             {t}
                         </Badge>
                         </li>
@@ -161,13 +200,20 @@ function ProjectCard({ p }) {
                         </a>
                     </Button>
                     <Button asChild size="sm" variant="outline" className="flex-1">
-                        <a href={p.links.repo} target="_blank" rel="noreferrer" aria-label={`${p.title} source`}>
+                        <a
+                        href={p.links.repo}
+                        target="_blank"
+                        rel="noreferrer"
+                        aria-label={`${p.title} source`}
+                        >
                         <Github className="mr-1 h-4 w-4" /> Source
                         </a>
                     </Button>
                     </div>
 
-                    <p className="mt-3 text-xs text-muted-foreground">Contributors: {p.contributors}</p>
+                    <p className="mt-3 text-xs text-muted-foreground">
+                    Contributors: {p.contributors}
+                    </p>
                 </CardContent>
                 </Card>
             </div>
@@ -178,10 +224,10 @@ function ProjectCard({ p }) {
                 style={{ transform: "rotateY(180deg)" }}
             >
                 <div className="flex h-full flex-col rounded-2xl border border-border bg-gradient-to-b from-card/90 to-card p-5">
-                <h3 className="text-base md:text-lg font-semibold tracking-tight">{p.title} — Details</h3>
-                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
-                    {p.summary}
-                </p>
+                <h3 className="text-base md:text-lg font-semibold tracking-tight">
+                    {p.title} — Details
+                </h3>
+                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{p.summary}</p>
 
                 <div className="mt-3 grid gap-2 text-sm">
                     <div className="grid grid-cols-3 gap-2">
@@ -193,7 +239,7 @@ function ProjectCard({ p }) {
                     <span className="col-span-2">{p.contributors}</span>
                     </div>
                     <ul className="mt-2 list-disc pl-5 text-muted-foreground/90">
-                    {p.details.map((d, i) => (
+                    {p.details.map((d: string, i: number) => (
                         <li key={i}>{d}</li>
                     ))}
                     </ul>
@@ -212,7 +258,12 @@ function ProjectCard({ p }) {
                         </a>
                     </Button>
                     </div>
-                    <Button size="sm" variant="ghost" onClick={() => setFlipped(false)} aria-label="Back to cover">
+                    <Button
+                    size="sm"
+                    variant="ghost"
+                    onClick={() => setFlipped(false)}
+                    aria-label="Back to cover"
+                    >
                     Back
                     </Button>
                 </div>
@@ -233,11 +284,13 @@ export default function Projects() {
         <div className="mx-auto max-w-6xl px-4">
             <div className="flex items-end justify-between gap-4">
             <h2 className="text-2xl md:text-3xl font-semibold tracking-tight">Projects</h2>
-            <span className="hidden md:inline-block text-xs text-muted-foreground">Scroll to preview, Tab to flip ✨</span>
+            <span className="hidden md:inline-block text-xs text-muted-foreground">
+                Scroll to preview, Tab to flip ✨
+            </span>
             </div>
 
             <div className="mt-6 grid gap-6 sm:grid-cols-2">
-            {PROJECTS.map((p) => (
+            {PROJECTS.map((p: Project) => (
                 <ProjectCard key={p.slug} p={p} />
             ))}
             </div>

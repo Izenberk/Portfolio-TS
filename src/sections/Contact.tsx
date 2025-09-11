@@ -27,8 +27,7 @@ export default function ContactSection() {
         <Section id="contact" className="py-16 text-center">
         <h2 className="mb-6 text-3xl font-bold">Contact</h2>
         <p className="mb-10 max-w-prose mx-auto text-white/80">
-            Let’s connect! You can reach me via email or follow me on my developer
-            profiles.
+            Get in touch via email or explore more of my work through the links below.
         </p>
 
         <div className="flex justify-center gap-8">
