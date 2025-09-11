@@ -1,11 +1,26 @@
-import { Button } from "@/components/ui/button"
+import Header from '@/components/layout/Header'
+import Hero from '@/sections/Hero'
+import SkillsSection from '@/sections/Skills'
+import ProjectsSection from '@/sections/Projects'
+import ExperienceSection from '@/sections/Experience'
+import AboutSection from '@/sections/About'
+import ContactSection from '@/sections/Contact'
 
-function App() {
+export default function App() {
   return (
-    <div className="flex min-h-svh flex-col items-center justify-center">
-      <Button>Click me</Button>
+    <div className="min-h-dvh bg-background text-foreground">
+      <Header />
+      <main>
+        <Hero />
+        <AboutSection />
+        <SkillsSection />
+        <ProjectsSection />
+        <ExperienceSection />
+        <ContactSection />
+      </main>
+      <footer className="mt-20 border-t border-border/60 py-10 text-center text-sm text-white/60">
+        © {new Date().getFullYear()} Korn. All rights reserved.
+      </footer>
     </div>
   )
 }
-
-export default App
