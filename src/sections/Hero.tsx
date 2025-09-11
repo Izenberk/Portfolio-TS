@@ -45,29 +45,31 @@ export default function Hero(): JSX.Element {
             </motion.p>
 
             <motion.div
-                className="mt-6 flex gap-3 justify-center"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.6, duration: 0.8 }}
+            className="mt-6 flex gap-3 justify-center"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.6, duration: 0.8 }}
             >
                 <motion.div whileHover={{ scale: 1.05 }}>
                     <ScrollLink
-                        to="projects"
-                        smooth={true}
-                        duration={800}
-                        offset={-80}      // same offset as Header (header height)
-                        spy={true}
-                        className="inline-flex items-center px-5 py-3 rounded-lg bg-primary text-primary-foreground cursor-pointer"
+                    to="projects"
+                    smooth={true}
+                    duration={800}
+                    offset={-80} // header height offset
+                    spy={true}
+                    className="inline-flex items-center px-5 py-3 rounded-lg bg-primary text-primary-foreground cursor-pointer"
                     >
-                        View Projects
+                    View Projects
                     </ScrollLink>
                 </motion.div>
+
                 <motion.a
-                href="/BB_CV.pdf"
-                whileHover={{ scale: 1.05 }}
-                className="inline-flex items-center px-5 py-3 rounded-lg border border-border"
+                    href="/Korn-aphichit_CV.pdf"
+                    download="Korn-aphichit_CV.pdf"
+                    whileHover={{ scale: 1.05 }}
+                    className="inline-flex items-center px-5 py-3 rounded-lg border border-border text-white/80 hover:bg-white/10 transition"
                 >
-                Download CV
+                    Download CV
                 </motion.a>
             </motion.div>
             </motion.div>
