@@ -5,10 +5,12 @@ import ProjectsSection from '@/sections/Projects'
 import ExperienceSection from '@/sections/Experience'
 import AboutSection from '@/sections/About'
 import ContactSection from '@/sections/Contact'
+import ScrollToTopOnLoad from './lib/scrollToTopOnLoad'
 
 export default function App() {
   return (
     <div className="min-h-dvh bg-background text-foreground">
+      <ScrollToTopOnLoad />
       <Header />
       <main>
         <Hero />

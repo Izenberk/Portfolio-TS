@@ -1,46 +1,44 @@
-import type { ExperienceItem } from '@/types/sections'
+// src/data/experience.ts
+
+export type ExperienceItem = {
+    id: string;
+    role: string;
+    company: string;
+    url?: string;
+    start: string; // "MMM YYYY" or similar
+    end: string;   // "Present" allowed
+    location?: string;
+    bullets: string[];
+    tech?: string[];
+};
 
 export const EXPERIENCE: ExperienceItem[] = [
     {
-        id: 'devlink',
-        role: 'Full-Stack Developer (Personal Project)',
-        company: 'DevLink',
-        url: 'https://github.com/Izenberk/DevLink',
-        location: 'Bangkok, TH',
-        start: '2025-07',
-        end: 'Present',
+        id: "gen-th-bootcamp-2025",
+        role: "Junior Software Developer Bootcamp",
+        company: "Generation Thailand",
+        url: "https://thailand.generation.org/",
+        start: "Jun 2025",
+        end: "Sep 2025",
+        location: "Bangkok, TH",
         bullets: [
-        'Built a portfolio/name-card builder focused on first-jobbers.',
-        'Implemented typed components (TSX), dark theme tokens, and shadcn/ui.',
-        'Deployed with Vercel; CI with GitHub Actions.',
+        "Developed full-stack skills with the MERN stack through hands-on, project-based learning",
+        "Built apps end-to-end: frontend, backend, database integration, Git workflows, and Agile collaboration",
         ],
-        tech: ['react', 'typescript', 'vite', 'tailwind', 'shadcn'],
+        tech: ["MongoDB", "Express", "React", "Node.js", "Git", "Agile"],
     },
     {
-        id: 'hugpaw',
-        role: 'Frontend Developer (Team Project)',
-        company: 'HugPaw e-commerce',
-        url: 'https://github.com/Izenberk/HugPaw-Ecommerce-Frontend',
-        location: 'Remote',
-        start: '2025-07',
-        end: '2025-08',
+        id: "rhb-associate-deriv-2022-2025",
+        role: "Associate Derivatives Trader",
+        company: "RHB Securities (Thailand) PCL",
+        url: "",
+        start: "Jul 2022",
+        end: "Apr 2025",
+        location: "Bangkok, TH",
         bullets: [
-        'Implemented cart/favorites and product customization UI.',
-        'Refactored toast UX, stock validation, and responsive layouts.',
+        "Collaborated across functions to manage high-stakes decisions and ensure accurate, real-time data handling",
+        "Applied analytical thinking under pressure to interpret complex information and maintain system integrity",
         ],
-        tech: ['react', 'typescript', 'tailwind'],
+        tech: ["Collaboration", "Data-driven Decisions", "Risk Management"],
     },
-    {
-        id: 'eqd',
-        role: 'Derivatives Trader (EQD)',
-        company: 'RHB Securities Thailand',
-        location: 'Bangkok, TH',
-        start: '2022-01',
-        end: '2025-06',
-        bullets: [
-        'Market-making DW/SSF; pricing, hedging, and risk control.',
-        'Automated workflows, built analytic dashboards, improved SLAs.',
-        ],
-        tech: ['node', 'typescript', 'vitest'],
-    },
-]
+];

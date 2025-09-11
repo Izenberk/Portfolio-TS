@@ -62,7 +62,7 @@ export default function ExperienceSection() {
                             {item.tech.map((t) => (
                             <span
                                 key={t}
-                                className="rounded-xl border border-white/15 bg-white/5 px-2 py-1 text-xs"
+                                className="rounded-xl border border-white/15 bg-accent/50 px-2 py-1 text-xs"
                             >
                                 {t}
                             </span>

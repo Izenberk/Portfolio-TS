@@ -5,9 +5,9 @@ import {
     User,
     Code,
     Briefcase,
-    GraduationCap,
     Mail,
     LucideIcon,
+    BookOpenCheck,
 } from "lucide-react";
 
 type NavItem = {
@@ -21,7 +21,7 @@ const NAV_ITEMS: NavItem[] = [
     { id: "about", label: "About", icon: User },
     { id: "skills", label: "Skills", icon: Code },
     { id: "projects", label: "Projects", icon: Briefcase },
-    { id: "experience", label: "Experience", icon: GraduationCap },
+    { id: "experience", label: "Experience", icon: BookOpenCheck },
     { id: "contact", label: "Contact", icon: Mail },
 ];
 
