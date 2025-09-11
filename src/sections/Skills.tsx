@@ -274,8 +274,7 @@ export default function Skills(): JSX.Element {
               key={group}
               className="
                 group transition-all duration-300 border border-border/80 bg-card/50
-                hover:-translate-y-1 hover:bg-card/70
-                cursor-pointer
+                hover:-translate-y-1 hover:bg-primary/25
               "
             >
               <CardHeader className="pb-2 md:pb-3">
@@ -288,7 +287,7 @@ export default function Skills(): JSX.Element {
                       key={k}
                       skill={k}
                       onClick={setActive}
-                      className="hover:-translate-y-0.5"
+                      className="hover:-translate-y-0.5  hover:cursor-pointer"
                       // (drop shadow since glow is handled at icon level)
                     />
 
