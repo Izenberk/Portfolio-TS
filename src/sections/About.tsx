@@ -15,21 +15,21 @@ export default function AboutSection(): JSX.Element {
       >
         <h2 className="text-2xl md:text-3xl font-semibold">About Me</h2>
         <p className="text-foreground/80 leading-relaxed">
-          I’m <span className="font-medium text-white">Korn-aphichit Ngaopan</span>, a former derivatives trader now
-          pursuing a career as a <span className="font-medium text-white">full-stack developer</span>. My years in
-          finance sharpened my <span className="font-medium text-white">detail-oriented mindset</span> and{' '}
-          <span className="font-medium text-white">analytical thinking</span> — skills I now carry into software
+          I’m <span className="font-medium text-primary">Korn-aphichit Ngaopan</span>, a former derivatives trader now
+          pursuing a career as a <span className="font-medium text-primary">full-stack developer</span>. My years in
+          finance sharpened my <span className="font-medium text-primary">detail-oriented mindset</span> and{' '}
+          <span className="font-medium text-primary">analytical thinking</span> — skills I now carry into software
           development.
         </p>
         <p className="text-foreground/80 leading-relaxed">
-          My programming journey began with <span className="font-medium text-white">self-motivated learning</span>,
+          My programming journey began with <span className="font-medium text-primary">self-motivated learning</span>,
           starting with Python in university and later advanced programming during my Master’s. After realizing I was
           more inspired by building systems than following markets, I joined Generation Thailand’s Junior Software
-          Developer Bootcamp. Today, I focus on building <span className="font-medium text-white">responsive UIs</span>,{' '}
-          <span className="font-medium text-white">clean APIs</span>, and{' '}
-          <span className="font-medium text-white">scalable solutions</span>, while continuing to explore my interests in{' '}
-          <span className="font-medium text-white">data</span> and{' '}
-          <span className="font-medium text-white">cybersecurity</span>.
+          Developer Bootcamp. Today, I focus on building <span className="font-medium text-primary">responsive UIs</span>,{' '}
+          <span className="font-medium text-primary">clean APIs</span>, and{' '}
+          <span className="font-medium text-primary">scalable solutions</span>, while continuing to explore my interests in{' '}
+          <span className="font-medium text-primary">data</span> and{' '}
+          <span className="font-medium text-primary">cybersecurity</span>.
         </p>
       </motion.div>
     </Section>
