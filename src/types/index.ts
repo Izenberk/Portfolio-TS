@@ -7,6 +7,7 @@ export type ExternalLink = {
 
 export type TechTag =
     | 'typescript'
+    | 'javascript'
     | 'react'
     | 'vite'
     | 'tailwind'
