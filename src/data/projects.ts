@@ -9,8 +9,8 @@ export const projects: Project[] = [
         'A portfolio/name-card builder for first-jobbers with project highlights and goals.',
         cover: '/images/devlink-cover.png', // optional
         repoUrl: 'https://github.com/Izenberk/DevLink',
-        demoUrl: 'https://devlink.example.com',
-        tech: ['react', 'typescript', 'vite', 'tailwind', 'shadcn'],
+        demoUrl: 'https://dev-link-alpha-seven.vercel.app',
+        tech: ['react', 'javascript', 'vite', 'tailwind', 'shadcn'],
         highlights: ['Profile schema', 'Dynamic sections', 'Responsive layout'],
     },
     {
@@ -20,8 +20,8 @@ export const projects: Project[] = [
         'Single-page e-commerce with cart, favorites, product customization, and admin UI.',
         cover: '/images/hugpaw-cover.png',
         repoUrl: 'https://github.com/Izenberk/HugPaw-Ecommerce-Frontend',
-        demoUrl: 'https://hugpaw.example.com',
-        tech: ['react', 'typescript', 'tailwind'],
+        demoUrl: 'https://hug-paw-ecommerce.vercel.app',
+        tech: ['react', 'javascript', 'tailwind'],
         highlights: ['Cart logic', 'Variant options', 'Toast UX'],
     },
 ]

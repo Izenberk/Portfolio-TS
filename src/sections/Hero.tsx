@@ -15,29 +15,30 @@ export default function Hero(): JSX.Element {
             transition={{ duration: 0.8 }}
             >
             <span className="text-foreground/80 text-sm py-2 flex justify-center">
-                BUILDING END-TO-END WEB SOLUTIONS
+                FAST LEARNER • GROWTH MINDSET • FULL-STACK DEVELOPMENT
             </span>
 
             <motion.h1
-                className="text-3xl md:text-5xl text-center font-bold leading-tight"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2, duration: 0.8 }}
+            className="text-3xl md:text-5xl text-center font-bold leading-tight"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.8 }}
             >
-                Transforming Ideas into <br /> Seamless{" "}
+                Growing Every Day as a  
                 <AuroraText colors={["#18337D", "#2C5DE3"]}>
-                Full-Stack Experiences
-                </AuroraText>
+                Full-Stack Developer
+            </AuroraText>
             </motion.h1>
 
             <motion.p
-                className="mt-4 text-foreground/80 text-center"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4, duration: 0.8 }}
+            className="mt-4 text-foreground/80 text-center"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4, duration: 0.8 }}
             >
-                Hi! I'm Korn, a Full Stack Developer crafting fast, responsive UIs
-                and robust, scalable backends.
+                Hi! I'm Korn — a developer with a fast-learning mindset, eager to grow in 
+                full-stack development. I craft responsive UIs and scalable backends while 
+                continuously expanding my skills and adapting to new challenges.
             </motion.p>
 
             <motion.div
@@ -61,11 +62,12 @@ export default function Hero(): JSX.Element {
 
                 <motion.a
                     href="/Korn-aphichit_CV.pdf"
-                    download="Korn-aphichit_CV.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     whileHover={{ scale: 1.05 }}
                     className="inline-flex items-center px-5 py-3 rounded-lg border border-border text-white/80 hover:bg-white/10 transition"
-                >
-                    Download CV
+                    >
+                    View CV
                 </motion.a>
             </motion.div>
 
