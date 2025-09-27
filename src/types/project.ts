@@ -1,11 +1,11 @@
+// src/types/project.ts
 export type Project = {
-    id: string;
+    slug: string;
     title: string;
-    description: string;
+    summary: string;
+    details: string[];
     stack: string[];
-    tags?: string[];
-    href?: string;
-    repo?: string;
-    cover?: string;
-    year?: number;
+    links: { demo: string; repo: string };
+    image: string;
+    contributors: string;
 };
