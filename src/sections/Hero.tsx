@@ -79,15 +79,16 @@ export default function Hero(): JSX.Element {
             >
 
             <div className="flex flex-wrap justify-center gap-8 mt-10">
-            {/* JavaScript */}
+            {/* TypeScript */}
             <div className="flex flex-col items-center text-center text-sm">
-                <img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
-                alt="JavaScript"
+            <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg"
+                alt="TypeScript"
                 className="h-10 w-10"
-                />
-                <span className="mt-2 text-foreground/70">JavaScript</span>
+            />
+            <span className="mt-2 text-foreground/70">TypeScript</span>
             </div>
+
 
             {/* React */}
             <div className="flex flex-col items-center text-center text-sm">
