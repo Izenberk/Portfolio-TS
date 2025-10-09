@@ -4,6 +4,38 @@ import { Project } from "@/types/project";
 
 export const PROJECTS: Project[] = [
     {
+        slug: "nextflix",
+        title: "Nextflix",
+        summary:
+            "A Netflix-style movie discovery app built as a type-safe monorepo with Next.js (web) and NestJS (API).",
+        details: [
+            "Browse Now Playing, Popular, Top Rated, and Upcoming movies via TMDb; hero trailer with YouTube, responsive carousels, and modal detail view.",
+            "Backend API with NestJS using Clean Architecture, versioned routes (/api/v1), and Swagger docs at /docs.",
+            "Monorepo with Turborepo + pnpm workspaces; shared domain contracts (Zod/TypeScript), axios TMDb client, and end-to-end typing.",
+            "Dockerized local dev; prepared for Vercel (web) and Render (API) deployment with environment-based config."
+        ],
+        stack: [
+            "Next.js 15",
+            "React",
+            "TypeScript",
+            "TailwindCSS",
+            "shadcn/ui",
+            "NestJS 11",
+            "Node",
+            "Axios",
+            "TMDb API",
+            "Turborepo",
+            "pnpm",
+            "Docker"
+        ],
+        links: {
+            demo: "https://nextflix-web-application-web.vercel.app",
+            repo: "https://github.com/Izenberk/nextflix-web-application"
+        },
+        image: "/images/Nextflix-thumnail-1.png",
+        contributors: "Izenberk"
+    },
+    {
         slug: "hugpaw",
         title: "HugPaw Ecommerce",
         summary:
@@ -20,21 +52,4 @@ export const PROJECTS: Project[] = [
         image: "/images/hugpaw-cover.png",
         contributors: "JSD Bootcamp Team",
     },
-    // {
-    //     slug: "devlink",
-    //     title: "DevLink",
-    //     summary: "A Developer-Centric Portfolio Platform built with MERN stack.",
-    //     details: [
-    //     "Showcases developer profiles, skills, and projects.",
-    //     "Applied CRUD operations, RESTful API integration, and state management for dynamic content handling.",
-    //     "Demonstrated solo project ownership through UI design, feature implementation, and deployment readiness.",
-    //     ],
-    //     stack: ["React", "Node", "Express", "MongoDB", "Tailwind", "shadcn/ui"],
-    //     links: {
-    //     demo: "https://dev-link-alpha-seven.vercel.app/",
-    //     repo: "https://github.com/Izenberk/DevLink",
-    //     },
-    //     image: "/images/devlink-cover.png",
-    //     contributors: "Solo",
-    // },
 ];
