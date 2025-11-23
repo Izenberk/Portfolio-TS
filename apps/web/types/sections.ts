@@ -8,11 +8,13 @@ export type SkillItem = {
 }
 
 export type SkillCategory = {
+    _id?: string
     title: string
     items: SkillItem[]
 }
 
 export type ExperienceItem = {
+    _id?: string
     id: string
     role: string
     company: string

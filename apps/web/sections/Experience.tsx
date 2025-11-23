@@ -1,12 +1,12 @@
 import Section from '@/components/layout/Section'
-import { EXPERIENCE } from '@/data/experience'
+import { ExperienceItem } from '@/types/sections'
 
 function formatRange(start: string, end: string) {
     // keep it simple; you can later use date-fns if you want
     return `${start} – ${end}`
 }
 
-export default function ExperienceSection() {
+export default function ExperienceSection({ data }: { data: ExperienceItem[] }) {
     return (
         <Section id="experience" className="py-16">
             <h2 className="mb-6 text-3xl font-bold">Experience</h2>
@@ -19,7 +19,7 @@ export default function ExperienceSection() {
                 <div className="absolute left-3 top-0 h-full w-px bg-white/10 md:left-1/2" />
 
                 <ul className="space-y-8">
-                    {EXPERIENCE.map((item, idx) => {
+                    {data.map((item, idx) => {
                         const isLeft = idx % 2 === 0
                         return (
                             <li key={item.id} className="relative md:grid md:grid-cols-2 md:gap-8">

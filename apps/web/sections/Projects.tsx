@@ -1,10 +1,10 @@
 "use client";
 
-import { PROJECTS } from "@/data/projects";
+import { Project } from "@/types/project";
 import ProjectCard from "@/components/projects/ProjectCard";
 
-export default function Projects() {
-  if (!PROJECTS?.length) return null;
+export default function Projects({ data }: { data: Project[] }) {
+  if (!data?.length) return null;
 
   return (
     <section id="projects" className="py-16 md:py-24">
@@ -19,7 +19,7 @@ export default function Projects() {
         </div>
 
         <div className="mt-10 grid gap-10 grid-cols-1 md:grid-cols-2">
-          {PROJECTS.map((p) => (
+          {data.map((p) => (
             <ProjectCard key={p.slug} p={p} />
           ))}
         </div>

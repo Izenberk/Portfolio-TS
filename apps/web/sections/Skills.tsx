@@ -248,17 +248,6 @@ const SKILL_DETAILS: Record<SkillKey, SkillDetail> = {
 
 
 
-const GROUPS: Record<string, SkillKey[]> = {
-  Frontend: ["React", "Next.js", "TailwindCSS", "shadcn/ui", "Framer Motion"],
-  Backend: ["Node.js", "NestJS", "Express", "Swagger/OpenAPI"],
-  Database: ["MongoDB", "PostgreSQL"],
-  DevOps: ["Git", "GitHub", "pnpm", "Docker", "Vercel", "Render"],
-  Fundamentals: ["TypeScript", "JavaScript", "DSA"],
-  Integrations: ["TMDb"],
-};
-
-
-
 // Minimal modal (portal + no third-party hooks)
 function SimpleModal({
   open,
@@ -361,8 +350,9 @@ function SkillRow({
   );
 }
 
+import { SkillCategory } from "@/types/sections";
 
-export default function Skills(): JSX.Element {
+export default function Skills({ data }: { data: SkillCategory[] }) {
   const [active, setActive] = useState<SkillKey | null>(null);
   const detail = useMemo(() => (active ? SKILL_DETAILS[active] : null), [active]);
 
@@ -375,23 +365,23 @@ export default function Skills(): JSX.Element {
         </div>
 
         <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8">
-          {Object.entries(GROUPS).map(([group, items]) => (
+          {data.map((category) => (
             <Card
-              key={group}
+              key={category.title}
               className="
                 group transition-all duration-300 border border-border/80 bg-card/50
                 hover:-translate-y-1 hover:bg-primary/25
               "
             >
               <CardHeader className="pb-2 md:pb-3">
-                <CardTitle className="text-xl md:text-2xl">{group}</CardTitle>
+                <CardTitle className="text-xl md:text-2xl">{category.title}</CardTitle>
               </CardHeader>
               <CardContent className="pt-0">
                 <ul className="flex flex-col gap-4 md:gap-5">
-                  {items.map((k) => (
+                  {category.items.map((item) => (
                     <SkillRow
-                      key={k}
-                      skill={k}
+                      key={item.name}
+                      skill={item.name as SkillKey}
                       onClick={setActive}
                       className="hover:-translate-y-0.5  hover:cursor-pointer"
                     // (drop shadow since glow is handled at icon level)
