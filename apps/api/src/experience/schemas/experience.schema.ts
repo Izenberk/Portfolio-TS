@@ -5,32 +5,26 @@ export type ExperienceDocument = Experience & Document;
 
 @Schema()
 export class Experience {
-    @Prop({ required: true, unique: true })
-    id: string;
-
     @Prop({ required: true })
     role: string;
 
     @Prop({ required: true })
     company: string;
 
-    @Prop()
-    url: string;
-
     @Prop({ required: true })
     start: string;
 
-    @Prop({ required: true })
+    @Prop()
     end: string;
 
     @Prop()
     location: string;
 
-    @Prop([String])
-    bullets: string[];
+    @Prop({ type: [String], default: [] })
+    tags: string[];
 
-    @Prop([String])
-    tech: string[];
+    @Prop({ type: [String], default: [] })
+    description: string[];
 }
 
 export const ExperienceSchema = SchemaFactory.createForClass(Experience);

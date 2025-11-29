@@ -10,6 +10,12 @@ export class SkillItem {
 
     @Prop({ required: true })
     level: string;
+
+    @Prop({ default: '' })
+    icon: string;
+
+    @Prop({ default: '' })
+    description: string;
 }
 export const SkillItemSchema = SchemaFactory.createForClass(SkillItem);
 

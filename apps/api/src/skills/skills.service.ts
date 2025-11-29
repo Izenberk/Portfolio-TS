@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { SkillCategory, SkillCategoryDocument } from './schemas/skill.schema';
@@ -16,15 +16,27 @@ export class SkillsService {
     return this.skillModel.find().exec();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} skill`;
+  async findOne(id: string): Promise<SkillCategory> {
+    const skill = await this.skillModel.findById(id).exec();
+    if (!skill) {
+      throw new NotFoundException(`Skill with ID ${id} not found`);
+    }
+    return skill;
   }
 
-  update(id: number, updateSkillDto: any) {
-    return `This action updates a #${id} skill`;
+  async update(id: string, updateSkillDto: any): Promise<SkillCategory> {
+    const updatedSkill = await this.skillModel.findByIdAndUpdate(id, updateSkillDto, { new: true }).exec();
+    if (!updatedSkill) {
+      throw new NotFoundException(`Skill with ID ${id} not found`);
+    }
+    return updatedSkill;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} skill`;
+  async remove(id: string): Promise<SkillCategory> {
+    const deletedSkill = await this.skillModel.findByIdAndDelete(id).exec();
+    if (!deletedSkill) {
+      throw new NotFoundException(`Skill with ID ${id} not found`);
+    }
+    return deletedSkill;
   }
 }

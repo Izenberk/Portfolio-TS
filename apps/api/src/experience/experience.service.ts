@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Experience, ExperienceDocument } from './schemas/experience.schema';
@@ -13,18 +13,30 @@ export class ExperienceService {
   }
 
   async findAll(): Promise<Experience[]> {
-    return this.experienceModel.find().exec();
+    return this.experienceModel.find().sort({ start: -1 }).exec();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} experience`;
+  async findOne(id: string): Promise<Experience> {
+    const experience = await this.experienceModel.findById(id).exec();
+    if (!experience) {
+      throw new NotFoundException(`Experience with ID ${id} not found`);
+    }
+    return experience;
   }
 
-  update(id: number, updateExperienceDto: any) {
-    return `This action updates a #${id} experience`;
+  async update(id: string, updateExperienceDto: any): Promise<Experience> {
+    const updatedExperience = await this.experienceModel.findByIdAndUpdate(id, updateExperienceDto, { new: true }).exec();
+    if (!updatedExperience) {
+      throw new NotFoundException(`Experience with ID ${id} not found`);
+    }
+    return updatedExperience;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} experience`;
+  async remove(id: string): Promise<Experience> {
+    const deletedExperience = await this.experienceModel.findByIdAndDelete(id).exec();
+    if (!deletedExperience) {
+      throw new NotFoundException(`Experience with ID ${id} not found`);
+    }
+    return deletedExperience;
   }
 }

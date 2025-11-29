@@ -6,7 +6,7 @@ import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 
 @Controller('experience')
 export class ExperienceController {
-  constructor(private readonly experienceService: ExperienceService) {}
+  constructor(private readonly experienceService: ExperienceService) { }
 
   @Post()
   @UseGuards(JwtAuthGuard)
@@ -21,18 +21,18 @@ export class ExperienceController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.experienceService.findOne(+id);
+    return this.experienceService.findOne(id);
   }
 
   @Patch(':id')
   @UseGuards(JwtAuthGuard)
   update(@Param('id') id: string, @Body() updateExperienceDto: UpdateExperienceDto) {
-    return this.experienceService.update(+id, updateExperienceDto);
+    return this.experienceService.update(id, updateExperienceDto);
   }
 
   @Delete(':id')
   @UseGuards(JwtAuthGuard)
   remove(@Param('id') id: string) {
-    return this.experienceService.remove(+id);
+    return this.experienceService.remove(id);
   }
 }
