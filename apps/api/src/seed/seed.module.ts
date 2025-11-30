@@ -4,9 +4,10 @@ import { SeedController } from './seed.controller';
 import { ProjectsModule } from '../projects/projects.module';
 import { SkillsModule } from '../skills/skills.module';
 import { ExperienceModule } from '../experience/experience.module';
+import { UsersModule } from '../users/users.module';
 
 @Module({
-  imports: [ProjectsModule, SkillsModule, ExperienceModule],
+  imports: [ProjectsModule, SkillsModule, ExperienceModule, UsersModule],
   controllers: [SeedController],
   providers: [SeedService],
 })
