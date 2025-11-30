@@ -3,12 +3,15 @@ import { ProjectsService } from '../projects/projects.service';
 import { SkillsService } from '../skills/skills.service';
 import { ExperienceService } from '../experience/experience.service';
 
+import { UsersService } from '../users/users.service';
+
 @Injectable()
 export class SeedService {
     constructor(
         private readonly projectsService: ProjectsService,
         private readonly skillsService: SkillsService,
         private readonly experienceService: ExperienceService,
+        private readonly usersService: UsersService,
     ) { }
 
     async seed() {
@@ -175,6 +178,25 @@ export class SeedService {
             } catch (err) {
                 results.experience.failed++;
             }
+        }
+
+        // Seed Admin User
+        const adminEmail = process.env.ADMIN_EMAIL;
+        const adminPassword = process.env.ADMIN_PASSWORD;
+
+        if (adminEmail && adminPassword) {
+            const existingUser = await this.usersService.findByEmail(adminEmail);
+            if (existingUser) {
+                // Update password if user exists
+                await this.usersService.update(existingUser._id, { password: adminPassword });
+                console.log(`Admin user ${adminEmail} updated.`);
+            } else {
+                // Create new user
+                await this.usersService.create(adminEmail, adminPassword);
+                console.log(`Admin user ${adminEmail} created.`);
+            }
+        } else {
+            console.log('Skipping admin user seed: ADMIN_EMAIL or ADMIN_PASSWORD not set.');
         }
 
         return { message: 'Seeding complete', results };
