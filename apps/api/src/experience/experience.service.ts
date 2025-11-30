@@ -13,7 +13,17 @@ export class ExperienceService {
   }
 
   async findAll(): Promise<Experience[]> {
-    return this.experienceModel.find().sort({ start: -1 }).exec();
+    return this.experienceModel.find().sort({ order: 1 }).exec();
+  }
+
+  async reorder(items: { id: string, order: number }[]): Promise<void> {
+    const bulkOps = items.map((item) => ({
+      updateOne: {
+        filter: { _id: item.id },
+        update: { $set: { order: item.order } },
+      },
+    }));
+    await this.experienceModel.bulkWrite(bulkOps);
   }
 
   async findOne(id: string): Promise<Experience> {

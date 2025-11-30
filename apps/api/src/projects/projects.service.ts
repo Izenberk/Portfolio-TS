@@ -8,12 +8,16 @@ export class ProjectsService {
   constructor(@InjectModel(Project.name) private projectModel: Model<ProjectDocument>) { }
 
   async create(createProjectDto: any): Promise<Project> {
-    const createdProject = new this.projectModel(createProjectDto);
+    // Find max order
+    const maxOrderProject = await this.projectModel.findOne().sort('-order').exec();
+    const order = maxOrderProject ? maxOrderProject.order + 1 : 0;
+
+    const createdProject = new this.projectModel({ ...createProjectDto, order });
     return createdProject.save();
   }
 
   async findAll(): Promise<Project[]> {
-    return this.projectModel.find().exec();
+    return this.projectModel.find().sort('order').exec();
   }
 
   async findOne(id: string): Promise<Project> {
@@ -38,5 +42,15 @@ export class ProjectsService {
       throw new NotFoundException(`Project with ID ${id} not found`);
     }
     return deletedProject;
+  }
+
+  async reorder(ids: string[]): Promise<void> {
+    const bulkOps = ids.map((id, index) => ({
+      updateOne: {
+        filter: { _id: id },
+        update: { order: index },
+      },
+    }));
+    await this.projectModel.bulkWrite(bulkOps);
   }
 }

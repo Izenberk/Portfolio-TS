@@ -1,49 +1,53 @@
 'use client';
 
 import { useState } from "react";
+import DynamicListInput from "@/components/admin/DynamicListInput";
 
 export default function NewProjectPage() {
-    const [formData, setFormData] = useState({
-        title: '',
-        slug: '',
-        summary: '',
-        image: '',
-        demoLink: '',
-        repoLink: '',
-    });
+  const [formData, setFormData] = useState({
+    title: '',
+    slug: '',
+    summary: '',
+    image: '',
+    demoLink: '',
+    repoLink: '',
+    details: [] as string[], // Changed to array
+    stack: '',
+    contributors: '',
+  });
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        const token = localStorage.getItem('token');
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const token = localStorage.getItem('token');
 
-        const payload = {
-            ...formData,
-            links: { demo: formData.demoLink, repo: formData.repoLink },
-            details: [],
-            stack: [],
-        };
-
-        const res = await fetch('http://localhost:3001/api/projects', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${token}`,
-            },
-            body: JSON.stringify(payload),
-        });
-
-        if (res.ok) {
-            window.location.href = '/admin/projects';
-        } else {
-            alert('Failed to create project');
-        }
+    const payload = {
+      ...formData,
+      links: { demo: formData.demoLink, repo: formData.repoLink },
+      // details is already an array
+      stack: formData.stack.split(',').map(s => s.trim()).filter(s => s !== ''),
     };
 
-      return (
+    const res = await fetch('http://localhost:3001/api/projects', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(payload),
+    });
+
+    if (res.ok) {
+      window.location.href = '/admin/projects';
+    } else {
+      alert('Failed to create project');
+    }
+  };
+
+  return (
     <div className="min-h-screen bg-background p-8">
       <div className="max-w-2xl mx-auto bg-card border border-border rounded-xl p-8 shadow-sm">
         <h1 className="text-2xl font-bold mb-6">Create New Project</h1>
-        
+
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="block text-sm font-medium mb-1">Title</label>
@@ -74,6 +78,34 @@ export default function NewProjectPage() {
               onChange={(e) => setFormData({ ...formData, summary: e.target.value })}
               className="w-full px-4 py-2 rounded-lg border border-border bg-background h-24"
               required
+            />
+          </div>
+
+          <DynamicListInput
+            label="Details / Features"
+            placeholder="Add a key feature..."
+            value={formData.details}
+            onChange={(newDetails) => setFormData({ ...formData, details: newDetails })}
+          />
+
+          <div>
+            <label className="block text-sm font-medium mb-1">Tech Stack (Comma separated)</label>
+            <input
+              type="text"
+              value={formData.stack}
+              onChange={(e) => setFormData({ ...formData, stack: e.target.value })}
+              className="w-full px-4 py-2 rounded-lg border border-border bg-background"
+              placeholder="React, Next.js, TypeScript"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium mb-1">Contributors (e.g. "Solo", "Team")</label>
+            <input
+              type="text"
+              value={formData.contributors}
+              onChange={(e) => setFormData({ ...formData, contributors: e.target.value })}
+              className="w-full px-4 py-2 rounded-lg border border-border bg-background"
             />
           </div>
 

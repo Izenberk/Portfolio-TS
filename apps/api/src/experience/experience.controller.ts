@@ -19,6 +19,12 @@ export class ExperienceController {
     return this.experienceService.findAll();
   }
 
+  @Patch('reorder')
+  @UseGuards(JwtAuthGuard)
+  reorder(@Body() items: { id: string; order: number }[]) {
+    return this.experienceService.reorder(items);
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.experienceService.findOne(id);

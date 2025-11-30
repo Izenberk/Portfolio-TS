@@ -28,6 +28,9 @@ export class Project {
 
     @Prop()
     contributors: string;
+
+    @Prop({ default: 0 })
+    order: number;
 }
 
 export const ProjectSchema = SchemaFactory.createForClass(Project);

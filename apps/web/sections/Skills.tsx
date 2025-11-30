@@ -5,6 +5,7 @@ import { createPortal } from "react-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { SkillCategory, SkillItem } from "@/types/sections";
 import ReactMarkdown from 'react-markdown';
+import Section from "@/components/layout/Section";
 
 import DynamicIcon from "@/components/ui/DynamicIcon";
 
@@ -142,40 +143,38 @@ export default function Skills({ data }: { data: SkillCategory[] }) {
   const [activeItem, setActiveItem] = useState<SkillItem | null>(null);
 
   return (
-    <section id="skills" className="py-16 md:py-24">
-      <div className="mx-auto max-w-5xl px-4">
-        <div className="flex items-end justify-between">
-          <h2 className="text-2xl md:text-3xl font-semibold">Skills</h2>
-          <div className="hidden md:block text-xs text-foreground/60">Click a skill to see details</div>
-        </div>
+    <Section id="skills" className="py-16 md:py-24" containerClassName="max-w-5xl">
+      <div className="flex items-end justify-between">
+        <h2 className="text-2xl md:text-3xl font-semibold">Skills</h2>
+        <div className="hidden md:block text-xs text-foreground/60">Click a skill to see details</div>
+      </div>
 
-        <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8">
-          {data.map((category) => (
-            <Card
-              key={category.title}
-              className="
-                group transition-all duration-300 border border-border/80 bg-card/50
-                hover:-translate-y-1 hover:bg-primary/25
-              "
-            >
-              <CardHeader className="pb-2 md:pb-3">
-                <CardTitle className="text-xl md:text-2xl">{category.title}</CardTitle>
-              </CardHeader>
-              <CardContent className="pt-0">
-                <ul className="flex flex-col gap-4 md:gap-5">
-                  {category.items.map((item) => (
-                    <SkillRow
-                      key={item.name}
-                      item={item}
-                      onClick={setActiveItem}
-                      className="hover:-translate-y-0.5  hover:cursor-pointer"
-                    />
-                  ))}
-                </ul>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+      <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+        {data.map((category) => (
+          <Card
+            key={category.title}
+            className="
+              group transition-all duration-300 border border-border/80 bg-card/50
+              hover:-translate-y-1 hover:bg-primary/25
+            "
+          >
+            <CardHeader className="pb-2 md:pb-3">
+              <CardTitle className="text-xl md:text-2xl">{category.title}</CardTitle>
+            </CardHeader>
+            <CardContent className="pt-0">
+              <ul className="flex flex-col gap-4 md:gap-5">
+                {category.items.map((item) => (
+                  <SkillRow
+                    key={item.name}
+                    item={item}
+                    onClick={setActiveItem}
+                    className="hover:-translate-y-0.5  hover:cursor-pointer"
+                  />
+                ))}
+              </ul>
+            </CardContent>
+          </Card>
+        ))}
       </div>
 
       <SimpleModal
@@ -235,6 +234,6 @@ export default function Skills({ data }: { data: SkillCategory[] }) {
           );
         })()}
       </SimpleModal>
-    </section>
+    </Section>
   );
 }

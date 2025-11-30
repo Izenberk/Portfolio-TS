@@ -1,4 +1,3 @@
-```
 'use client';
 
 import { useState } from 'react';
@@ -7,6 +6,7 @@ export default function NewExperiencePage() {
     const [formData, setFormData] = useState({
         company: '',
         role: '',
+        url: '',
         start: '',
         end: '',
         location: '',
@@ -54,7 +54,7 @@ export default function NewExperiencePage() {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: `Bearer ${ token } `,
+                'Authorization': `Bearer ${token}`,
             },
             body: JSON.stringify({
                 ...formData,
@@ -99,6 +99,17 @@ export default function NewExperiencePage() {
                                 required
                             />
                         </div>
+                    </div>
+
+                    <div>
+                        <label className="block text-sm font-medium mb-1">Company Website (Optional)</label>
+                        <input
+                            type="url"
+                            value={formData.url}
+                            onChange={(e) => setFormData({ ...formData, url: e.target.value })}
+                            placeholder="https://example.com"
+                            className="w-full px-4 py-2 rounded-lg border border-border bg-background"
+                        />
                     </div>
 
                     <div className="grid grid-cols-2 gap-4">

@@ -8,15 +8,15 @@ import Section from "@/components/layout/Section"
 
 export default function Hero(): JSX.Element {
     return (
-        <Section id="home" className="relative pt-20 md:pt-28 min-h-[100dvh] overflow-hidden">
-            <div className="mx-auto max-w-5xl px-4 grid gap-8 pt-4 justify-center items-center">
+        <Section id="home" className="relative pt-20 md:pt-28 min-h-[100dvh] overflow-hidden" containerClassName="max-w-5xl">
+            <div className="grid gap-8 pt-4 justify-center items-center">
                 <motion.div
                     initial={{ opacity: 0, y: 40 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
                 >
                     <span className="text-foreground/80 text-sm py-2 flex justify-center">
-                        FAST LEARNER • GROWTH MINDSET • FULL-STACK DEVELOPMENT
+                        FULL-STACK ENGINEER • AUTOMATION ARCHITECT • DATA OPS
                     </span>
 
                     <motion.h1
@@ -25,9 +25,9 @@ export default function Hero(): JSX.Element {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.2, duration: 0.8 }}
                     >
-                        Growing Every Day as a <br />
+                        Engineering Scalable Systems & <br />
                         <AuroraText colors={["#18337D", "#2C5DE3"]}>
-                            Full-Stack Developer
+                            Intelligent Workflows
                         </AuroraText>
                     </motion.h1>
 
@@ -37,9 +37,9 @@ export default function Hero(): JSX.Element {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.4, duration: 0.8 }}
                     >
-                        Hi! I'm Korn — a developer with a fast-learning mindset, eager to grow in
-                        full-stack development. I craft responsive UIs and scalable backends while
-                        continuously expanding my skills and adapting to new challenges.
+                        Hi, I'm Korn. I transform complex business requirements into streamlined digital solutions.
+                        By fusing Full-Stack development with advanced automation, I build robust applications
+                        and self-sustaining workflows that maximize efficiency and scalability.
                     </motion.p>
 
                     <motion.div
@@ -76,7 +76,7 @@ export default function Hero(): JSX.Element {
                     >
 
                         <div className="flex flex-wrap justify-center gap-8 mt-10">
-                            {/* TypeScript */}
+                            {/* 1. TypeScript */}
                             <div className="flex flex-col items-center text-center text-sm">
                                 <img
                                     src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg"
@@ -86,18 +86,27 @@ export default function Hero(): JSX.Element {
                                 <span className="mt-2 text-foreground/70">TypeScript</span>
                             </div>
 
-
-                            {/* React */}
+                            {/* 2. Next.js */}
                             <div className="flex flex-col items-center text-center text-sm">
                                 <img
-                                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
-                                    alt="React"
-                                    className="h-10 w-10"
+                                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg"
+                                    alt="Next.js"
+                                    className="h-10 w-10 invert dark:invert-0"
                                 />
-                                <span className="mt-2 text-foreground/70">React</span>
+                                <span className="mt-2 text-foreground/70">Next.js</span>
                             </div>
 
-                            {/* Node.js */}
+                            {/* 3. NestJS */}
+                            <div className="flex flex-col items-center text-center text-sm">
+                                <img
+                                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nestjs/nestjs-original.svg"
+                                    alt="NestJS"
+                                    className="h-10 w-10"
+                                />
+                                <span className="mt-2 text-foreground/70">NestJS</span>
+                            </div>
+
+                            {/* 4. Node.js */}
                             <div className="flex flex-col items-center text-center text-sm">
                                 <img
                                     src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg"
@@ -107,47 +116,17 @@ export default function Hero(): JSX.Element {
                                 <span className="mt-2 text-foreground/70">Node.js</span>
                             </div>
 
-                            {/* Express */}
+                            {/* 5. n8n */}
                             <div className="flex flex-col items-center text-center text-sm">
                                 <img
-                                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg"
-                                    alt="Express"
-                                    className="h-10 w-10 invert dark:invert-0"
-                                />
-                                <span className="mt-2 text-foreground/70">Express</span>
-                            </div>
-
-                            {/* MongoDB */}
-                            <div className="flex flex-col items-center text-center text-sm">
-                                <img
-                                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg"
-                                    alt="MongoDB"
+                                    src="https://cdn.simpleicons.org/n8n/FF6584"
+                                    alt="n8n"
                                     className="h-10 w-10"
                                 />
-                                <span className="mt-2 text-foreground/70">MongoDB</span>
+                                <span className="mt-2 text-foreground/70">n8n</span>
                             </div>
 
-                            {/* Linux */}
-                            <div className="flex flex-col items-center text-center text-sm">
-                                <img
-                                    src="https://img.icons8.com/color/96/linux--v1.png"
-                                    alt="Linux"
-                                    className="h-10 w-10"
-                                />
-                                <span className="mt-2 text-foreground/70">Linux</span>
-                            </div>
-
-                            {/* Git */}
-                            <div className="flex flex-col items-center text-center text-sm">
-                                <img
-                                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"
-                                    alt="Git"
-                                    className="h-10 w-10"
-                                />
-                                <span className="mt-2 text-foreground/70">Git</span>
-                            </div>
-
-                            {/* Docker */}
+                            {/* 6. Docker */}
                             <div className="flex flex-col items-center text-center text-sm">
                                 <img
                                     src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg"
@@ -157,14 +136,24 @@ export default function Hero(): JSX.Element {
                                 <span className="mt-2 text-foreground/70">Docker</span>
                             </div>
 
-                            {/* n8n */}
+                            {/* 7. Linux */}
                             <div className="flex flex-col items-center text-center text-sm">
                                 <img
-                                    src="https://cdn.simpleicons.org/n8n/FF6584"
-                                    alt="n8n"
+                                    src="https://img.icons8.com/color/96/linux--v1.png"
+                                    alt="Linux"
                                     className="h-10 w-10"
                                 />
-                                <span className="mt-2 text-foreground/70">n8n</span>
+                                <span className="mt-2 text-foreground/70">Linux</span>
+                            </div>
+
+                            {/* 8. MongoDB */}
+                            <div className="flex flex-col items-center text-center text-sm">
+                                <img
+                                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg"
+                                    alt="MongoDB"
+                                    className="h-10 w-10"
+                                />
+                                <span className="mt-2 text-foreground/70">MongoDB</span>
                             </div>
                         </div>
                     </motion.div>

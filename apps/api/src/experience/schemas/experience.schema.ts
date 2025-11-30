@@ -11,6 +11,9 @@ export class Experience {
     @Prop({ required: true })
     company: string;
 
+    @Prop()
+    url: string;
+
     @Prop({ required: true })
     start: string;
 
@@ -25,6 +28,9 @@ export class Experience {
 
     @Prop({ type: [String], default: [] })
     description: string[];
+
+    @Prop({ default: 0 })
+    order: number;
 }
 
 export const ExperienceSchema = SchemaFactory.createForClass(Experience);

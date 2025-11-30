@@ -35,4 +35,10 @@ export class ProjectsController {
   remove(@Param('id') id: string) {
     return this.projectsService.remove(id);
   }
+  @Patch('reorder/all')
+  @UseGuards(JwtAuthGuard)
+  async reorder(@Body() body: { ids: string[] }) {
+    await this.projectsService.reorder(body.ids);
+    return { success: true };
+  }
 }

@@ -16,23 +16,26 @@ export default function AboutSection(): JSX.Element {
         className="space-y-4"
       >
         <h2 className="text-2xl md:text-3xl font-semibold">About Me</h2>
-        <p className="text-foreground/80 leading-relaxed">
-          I’m <span className="font-medium text-primary">Korn-aphichit Ngaopan</span>, a former derivatives trader now
-          pursuing a career as a <span className="font-medium text-primary">full-stack developer</span>. My years in
-          finance sharpened my <span className="font-medium text-primary">detail-oriented mindset</span> and{' '}
-          <span className="font-medium text-primary">analytical thinking</span> — skills I now carry into software
-          development.
-        </p>
-        <p className="text-foreground/80 leading-relaxed">
-          My programming journey began with <span className="font-medium text-primary">self-motivated learning</span>,
-          starting with Python in university and later advanced programming during my Master’s. After realizing I was
-          more inspired by building systems than following markets, I joined Generation Thailand’s Junior Software
-          Developer Bootcamp. Today, I focus on building <span className="font-medium text-primary">responsive UIs</span>,{' '}
-          <span className="font-medium text-primary">clean APIs</span>, and{' '}
-          <span className="font-medium text-primary">scalable solutions</span>, while continuing to explore my interests in{' '}
-          <span className="font-medium text-primary">data</span> and{' '}
-          <span className="font-medium text-primary">cybersecurity</span>.
-        </p>
+        <div className="mx-auto max-w-3xl text-lg leading-relaxed text-muted-foreground">
+          <p className="mb-6">
+            I’m <span className="text-[#2C5DE3] font-semibold">Korn-aphichit Ngaopan</span>, a{' '}
+            <span className="text-[#2C5DE3] font-semibold">Full-Stack Developer</span> with a specialized focus on{' '}
+            <span className="text-[#2C5DE3] font-semibold">Backend Engineering</span>.
+          </p>
+          <p className="mb-6">
+            My background as a <span className="text-[#2C5DE3] font-semibold">Derivatives Trader</span> gave me a{' '}
+            <span className="text-[#2C5DE3] font-semibold">logical, data-driven mindset</span>, but my programming journey began with{' '}
+            <span className="text-[#2C5DE3] font-semibold">self-motivated learning</span>. I realized I had a deep passion for technology and a{' '}
+            <span className="text-[#2C5DE3] font-semibold">growth mindset</span> that craved new challenges.
+          </p>
+          <p>
+            Today, that passion for learning drives my development. I design{' '}
+            <span className="text-[#2C5DE3] font-semibold">scalable backend architectures</span>, treating{' '}
+            <span className="text-[#2C5DE3] font-semibold">workflow automation (n8n)</span> as a strategic layer alongside{' '}
+            <span className="text-[#2C5DE3] font-semibold">Node.js</span> and{' '}
+            <span className="text-[#2C5DE3] font-semibold">NestJS</span>. Whether I’m architecting a new microservice or optimizing a legacy pipeline, I bring precision and performance to every line of code.
+          </p>
+        </div>
       </motion.div>
     </Section>
   )

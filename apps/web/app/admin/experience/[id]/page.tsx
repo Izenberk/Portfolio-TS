@@ -8,6 +8,7 @@ export default function EditExperiencePage() {
     const [formData, setFormData] = useState({
         company: '',
         role: '',
+        url: '',
         start: '',
         end: '',
         location: '',
@@ -22,6 +23,7 @@ export default function EditExperiencePage() {
                 setFormData({
                     company: data.company,
                     role: data.role,
+                    url: data.url || '',
                     start: data.start ? new Date(data.start).toISOString().split('T')[0] : '',
                     end: data.end ? new Date(data.end).toISOString().split('T')[0] : '',
                     location: data.location || '',
@@ -114,6 +116,17 @@ export default function EditExperiencePage() {
                                 required
                             />
                         </div>
+                    </div>
+
+                    <div>
+                        <label className="block text-sm font-medium mb-1">Company Website (Optional)</label>
+                        <input
+                            type="url"
+                            value={formData.url}
+                            onChange={(e) => setFormData({ ...formData, url: e.target.value })}
+                            placeholder="https://example.com"
+                            className="w-full px-4 py-2 rounded-lg border border-border bg-background"
+                        />
                     </div>
 
                     <div className="grid grid-cols-2 gap-4">

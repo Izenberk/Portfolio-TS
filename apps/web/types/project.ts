@@ -9,4 +9,5 @@ export type Project = {
     links: { demo: string; repo: string };
     image: string;
     contributors: string;
+    order?: number;
 };
