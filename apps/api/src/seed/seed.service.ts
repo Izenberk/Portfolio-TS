@@ -188,7 +188,7 @@ export class SeedService {
             const existingUser = await this.usersService.findByEmail(adminEmail);
             if (existingUser) {
                 // Update password if user exists
-                await this.usersService.update(existingUser._id, { password: adminPassword });
+                await this.usersService.update(existingUser._id.toString(), { password: adminPassword });
                 console.log(`Admin user ${adminEmail} updated.`);
             } else {
                 // Create new user
