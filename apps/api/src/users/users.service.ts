@@ -22,18 +22,18 @@ export class UsersService {
     return `This action returns all users`;
   }
 
-  findOne(id: number) {
+  findOne(id: string) {
     return `This action returns a #${id} user`;
   }
 
-  async update(id: string, updateUserDto: any): Promise<User> {
+  async update(id: string, updateUserDto: any): Promise<User | null> {
     if (updateUserDto.password) {
       updateUserDto.password = await bcrypt.hash(updateUserDto.password, 10);
     }
     return this.userModel.findByIdAndUpdate(id, updateUserDto, { new: true }).exec();
   }
 
-  remove(id: number) {
+  remove(id: string) {
     return `This action removes a #${id} user`;
   }
 }
