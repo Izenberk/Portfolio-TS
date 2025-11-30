@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import DynamicListInput from "@/components/admin/DynamicListInput";
 
+import { API_URL } from '@/lib/config';
+
 export default function EditProjectPage() {
   const params = useParams();
   const [formData, setFormData] = useState({
@@ -20,7 +22,7 @@ export default function EditProjectPage() {
 
   // Fetch existing data
   useEffect(() => {
-    fetch(`http://localhost:3001/api/projects/${params.id}`)
+    fetch(`${API_URL}/api/projects/${params.id}`)
       .then((res) => res.json())
       .then((data) => {
         setFormData({
@@ -48,7 +50,7 @@ export default function EditProjectPage() {
       stack: formData.stack.split(',').map(s => s.trim()).filter(s => s !== ''),
     };
 
-    const res = await fetch(`http://localhost:3001/api/projects/${params.id}`, {
+    const res = await fetch(`${API_URL}/api/projects/${params.id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',

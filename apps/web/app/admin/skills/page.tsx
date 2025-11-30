@@ -18,6 +18,8 @@ import {
 import { SortableSkillCategory } from './_components/SortableSkillCategory';
 import { useSortableData } from "@/hooks/useSortableData";
 
+import { API_URL } from '@/lib/config';
+
 export default function SkillsAdminPage() {
     const {
         items: skills,
@@ -27,8 +29,8 @@ export default function SkillsAdminPage() {
         saveOrder,
         removeItem
     } = useSortableData(
-        "http://localhost:3001/api/skills",
-        "http://localhost:3001/api/skills/reorder",
+        `${API_URL}/api/skills`,
+        `${API_URL}/api/skills/reorder`,
         "ordered-objects"
     );
 
@@ -43,7 +45,7 @@ export default function SkillsAdminPage() {
         if (!confirm('Are you sure you want to delete this category?')) return;
 
         const token = localStorage.getItem('token');
-        await fetch(`http://localhost:3001/api/skills/${id}`, {
+        await fetch(`${API_URL}/api/skills/${id}`, {
             method: 'DELETE',
             headers: { Authorization: `Bearer ${token}` },
         });

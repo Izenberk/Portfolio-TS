@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 
+import { API_URL } from '@/lib/config';
+
 export default function NewExperiencePage() {
     const [formData, setFormData] = useState({
         company: '',
@@ -50,7 +52,7 @@ export default function NewExperiencePage() {
         const cleanDescription = description.filter(d => d.trim() !== '');
         const cleanTags = tags.filter(t => t.trim() !== '');
 
-        const res = await fetch('http://localhost:3001/api/experience', {
+        const res = await fetch(`${API_URL}/api/experience`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

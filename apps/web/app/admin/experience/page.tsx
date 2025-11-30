@@ -18,6 +18,8 @@ import {
 import { SortableExperienceItem } from './_components/SortableExperienceItem';
 import { useSortableData } from "@/hooks/useSortableData";
 
+import { API_URL } from '@/lib/config';
+
 export default function ExperienceAdminPage() {
     const {
         items: experiences,
@@ -27,8 +29,8 @@ export default function ExperienceAdminPage() {
         saveOrder,
         removeItem
     } = useSortableData(
-        "http://localhost:3001/api/experience",
-        "http://localhost:3001/api/experience/reorder",
+        `${API_URL}/api/experience`,
+        `${API_URL}/api/experience/reorder`,
         "ordered-objects"
     );
 
@@ -43,7 +45,7 @@ export default function ExperienceAdminPage() {
         if (!confirm('Are you sure you want to delete this experience?')) return;
 
         const token = localStorage.getItem('token');
-        await fetch(`http://localhost:3001/api/experience/${id}`, {
+        await fetch(`${API_URL}/api/experience/${id}`, {
             method: 'DELETE',
             headers: { Authorization: `Bearer ${token}` },
         });

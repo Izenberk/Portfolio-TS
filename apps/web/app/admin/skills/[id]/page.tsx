@@ -19,6 +19,8 @@ import {
 } from '@dnd-kit/sortable';
 import { SortableSkillItem } from '../_components/SortableSkillItem';
 
+import { API_URL } from '@/lib/config';
+
 export default function EditSkillPage() {
     const params = useParams();
     const [title, setTitle] = useState('');
@@ -32,7 +34,7 @@ export default function EditSkillPage() {
     );
 
     useEffect(() => {
-        fetch(`http://localhost:3001/api/skills/${params.id}`)
+        fetch(`${API_URL}/api/skills/${params.id}`)
             .then((res) => res.json())
             .then((data) => {
                 setTitle(data.title);
@@ -89,7 +91,7 @@ export default function EditSkillPage() {
         // For existing items, we want to keep _id if the backend uses it to update subdocs.
         // If we are replacing the whole array, we might not need to worry too much.
 
-        const res = await fetch(`http://localhost:3001/api/skills/${params.id}`, {
+        const res = await fetch(`${API_URL}/api/skills/${params.id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',

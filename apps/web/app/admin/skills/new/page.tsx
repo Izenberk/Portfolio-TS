@@ -18,6 +18,8 @@ import {
 } from '@dnd-kit/sortable';
 import { SortableSkillItem } from '../_components/SortableSkillItem';
 
+import { API_URL } from '@/lib/config';
+
 export default function NewSkillPage() {
     const [title, setTitle] = useState('');
     // Ensure items have a unique ID for dnd-kit
@@ -74,7 +76,7 @@ export default function NewSkillPage() {
         // Clean up IDs before sending if backend doesn't expect them (or backend ignores extra fields)
         const cleanItems = items.map(({ id, ...rest }) => rest);
 
-        const res = await fetch('http://localhost:3001/api/skills', {
+        const res = await fetch(`${API_URL}/api/skills`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

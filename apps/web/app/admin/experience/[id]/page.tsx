@@ -3,6 +3,8 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 
+import { API_URL } from '@/lib/config';
+
 export default function EditExperiencePage() {
     const params = useParams();
     const [formData, setFormData] = useState({
@@ -17,7 +19,7 @@ export default function EditExperiencePage() {
     const [tags, setTags] = useState(['']);
 
     useEffect(() => {
-        fetch(`http://localhost:3001/api/experience/${params.id}`)
+        fetch(`${API_URL}/api/experience/${params.id}`)
             .then((res) => res.json())
             .then((data) => {
                 setFormData({
@@ -68,7 +70,7 @@ export default function EditExperiencePage() {
         const cleanDescription = description.filter(d => d.trim() !== '');
         const cleanTags = tags.filter(t => t.trim() !== '');
 
-        const res = await fetch(`http://localhost:3001/api/experience/${params.id}`, {
+        const res = await fetch(`${API_URL}/api/experience/${params.id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',

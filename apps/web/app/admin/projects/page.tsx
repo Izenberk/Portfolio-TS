@@ -21,6 +21,8 @@ import { CSS } from "@dnd-kit/utilities";
 import { GripVertical } from "lucide-react";
 import { useSortableData } from "@/hooks/useSortableData";
 
+import { API_URL } from '@/lib/config';
+
 // Sortable Item Component
 function SortableProjectRow({ project, onDelete }: { project: any; onDelete: (id: string) => void }) {
   const {
@@ -78,8 +80,8 @@ export default function ProjectsAdminPage() {
     saveOrder,
     removeItem
   } = useSortableData(
-    "http://localhost:3001/api/projects",
-    "http://localhost:3001/api/projects/reorder/all",
+    `${API_URL}/api/projects`,
+    `${API_URL}/api/projects/reorder/all`,
     "ids-array"
   );
 
@@ -94,7 +96,7 @@ export default function ProjectsAdminPage() {
     if (!confirm('Are you sure you want to delete this project?')) return;
 
     const token = localStorage.getItem('token');
-    await fetch(`http://localhost:3001/api/projects/${id}`, {
+    await fetch(`${API_URL}/api/projects/${id}`, {
       method: 'DELETE',
       headers: { Authorization: `Bearer ${token}` },
     });

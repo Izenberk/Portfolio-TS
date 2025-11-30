@@ -3,6 +3,8 @@
 import { useState } from "react";
 import DynamicListInput from "@/components/admin/DynamicListInput";
 
+import { API_URL } from '@/lib/config';
+
 export default function NewProjectPage() {
   const [formData, setFormData] = useState({
     title: '',
@@ -27,7 +29,7 @@ export default function NewProjectPage() {
       stack: formData.stack.split(',').map(s => s.trim()).filter(s => s !== ''),
     };
 
-    const res = await fetch('http://localhost:3001/api/projects', {
+    const res = await fetch(`${API_URL}/api/projects`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

@@ -6,9 +6,10 @@ import SkillsSection from "@/sections/Skills";
 import ContactSection from "@/sections/Contact";
 import Navbar from "@/components/layout/Navbar";
 import ScrollToTopOnLoad from "@/components/layout/ScrollToTopOnLoad";
+import { API_URL } from '@/lib/config';
 
 async function getData(endpoint: string) {
-  const res = await fetch(`http://localhost:3001/api/${endpoint}`, {
+  const res = await fetch(`${API_URL}/api/${endpoint}`, {
     cache: "no-store"
   });
   if (!res.ok) {
@@ -21,7 +22,7 @@ export default async function Home() {
   const projects = await getData("projects");
   const skills = await getData("skills");
   const experience = await getData("experience");
-  
+
   return (
     <main className="relative min-h-screen bg-background text-foreground selection:bg-primary/30">
       <ScrollToTopOnLoad />
