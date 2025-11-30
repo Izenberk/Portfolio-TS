@@ -12,6 +12,16 @@ export class ExperienceService {
     return createdExperience.save();
   }
 
+  async upsert(createExperienceDto: any): Promise<Experience> {
+    const existing = await this.experienceModel.findOne({ id: createExperienceDto.id }).exec();
+    if (existing) {
+      const updated = await this.experienceModel.findByIdAndUpdate(existing._id, createExperienceDto, { new: true }).exec();
+      if (!updated) throw new NotFoundException(`Experience ${createExperienceDto.id} not found`);
+      return updated;
+    }
+    return this.create(createExperienceDto);
+  }
+
   async findAll(): Promise<Experience[]> {
     return this.experienceModel.find().sort({ order: 1 }).exec();
   }

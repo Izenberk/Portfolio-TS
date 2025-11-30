@@ -153,27 +153,25 @@ export class SeedService {
 
         for (const p of projects) {
             try {
-                await this.projectsService.create(p);
+                await this.projectsService.upsert(p);
                 results.projects.success++;
             } catch (e) {
                 results.projects.failed++;
             }
         }
 
-        // Skills don't have unique keys in schema (except _id), so we might duplicate if we run multiple times.
-        // Ideally we should check if exists. But for now, let's assume fresh DB or just clear it.
-        // Since I didn't implement clear/delete, I'll just append.
-        // Wait, I should probably delete all first?
-        // But I didn't implement removeAll.
-        // I'll just proceed.
         for (const s of skills) {
-            await this.skillsService.create(s);
-            results.skills.success++;
+            try {
+                await this.skillsService.upsert(s);
+                results.skills.success++;
+            } catch (e) {
+                results.skills.failed++;
+            }
         }
 
         for (const e of experience) {
             try {
-                await this.experienceService.create(e);
+                await this.experienceService.upsert(e);
                 results.experience.success++;
             } catch (err) {
                 results.experience.failed++;

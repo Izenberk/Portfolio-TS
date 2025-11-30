@@ -16,6 +16,16 @@ export class ProjectsService {
     return createdProject.save();
   }
 
+  async upsert(createProjectDto: any): Promise<Project> {
+    const existing = await this.projectModel.findOne({ slug: createProjectDto.slug }).exec();
+    if (existing) {
+      const updated = await this.projectModel.findByIdAndUpdate(existing._id, createProjectDto, { new: true }).exec();
+      if (!updated) throw new NotFoundException(`Project ${createProjectDto.slug} not found`);
+      return updated;
+    }
+    return this.create(createProjectDto);
+  }
+
   async findAll(): Promise<Project[]> {
     return this.projectModel.find().sort('order').exec();
   }

@@ -1,12 +1,15 @@
 import Section from '@/components/layout/Section'
-import { EXPERIENCE } from '@/data/experience'
+import { ExperienceItem } from '@/types/sections'
 
-function formatRange(start: string, end: string) {
-    // keep it simple; you can later use date-fns if you want
-    return `${start} – ${end}`
+function formatRange(start: string, end?: string) {
+    const startDate = new Date(start).toLocaleDateString('en-US', { year: 'numeric', month: 'short' });
+    const endDate = end ? new Date(end).toLocaleDateString('en-US', { year: 'numeric', month: 'short' }) : 'Present';
+    return `${startDate} – ${endDate}`;
 }
 
-export default function ExperienceSection() {
+export default function ExperienceSection({ data }: { data: ExperienceItem[] }) {
+    if (!data) return null;
+
     return (
         <Section id="experience" className="py-16">
             <h2 className="mb-6 text-3xl font-bold">Experience</h2>
@@ -19,10 +22,10 @@ export default function ExperienceSection() {
                 <div className="absolute left-3 top-0 h-full w-px bg-white/10 md:left-1/2" />
 
                 <ul className="space-y-8">
-                    {EXPERIENCE.map((item, idx) => {
+                    {data.map((item, idx) => {
                         const isLeft = idx % 2 === 0
                         return (
-                            <li key={item.id} className="relative md:grid md:grid-cols-2 md:gap-8">
+                            <li key={item._id} className="relative md:grid md:grid-cols-2 md:gap-8">
                                 {/* dot */}
                                 <span
                                     className="absolute left-3 top-2 block h-3 w-3 -translate-x-1/2 rounded-full bg-primary md:left-1/2"
@@ -32,8 +35,9 @@ export default function ExperienceSection() {
                                     <article className="rounded-2xl border border-border bg-card p-5">
                                         <header className="mb-2">
                                             <h3 className="text-lg font-semibold">
-                                                {item.role}{' '}
-                                                <span className="text-white/70">@ </span>
+                                                {item.role}
+                                            </h3>
+                                            <div className="text-base font-medium text-white/90">
                                                 {item.url ? (
                                                     <a
                                                         href={item.url}
@@ -44,9 +48,9 @@ export default function ExperienceSection() {
                                                         {item.company}
                                                     </a>
                                                 ) : (
-                                                    <span className="text-white/90">{item.company}</span>
+                                                    <span>{item.company}</span>
                                                 )}
-                                            </h3>
+                                            </div>
                                             <p className="text-xs text-white/60">
                                                 {formatRange(item.start, item.end)}
                                                 {item.location ? ` · ${item.location}` : ''}

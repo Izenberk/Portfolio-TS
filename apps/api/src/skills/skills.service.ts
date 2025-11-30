@@ -12,6 +12,16 @@ export class SkillsService {
     return createdSkill.save();
   }
 
+  async upsert(createSkillDto: any): Promise<SkillCategory> {
+    const existing = await this.skillModel.findOne({ title: createSkillDto.title }).exec();
+    if (existing) {
+      const updated = await this.skillModel.findByIdAndUpdate(existing._id, createSkillDto, { new: true }).exec();
+      if (!updated) throw new NotFoundException(`Skill ${createSkillDto.title} not found`);
+      return updated;
+    }
+    return this.create(createSkillDto);
+  }
+
   async findAll(): Promise<SkillCategory[]> {
     return this.skillModel.find().sort({ order: 1 }).exec();
   }
