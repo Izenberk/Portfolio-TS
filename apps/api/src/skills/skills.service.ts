@@ -13,7 +13,17 @@ export class SkillsService {
   }
 
   async findAll(): Promise<SkillCategory[]> {
-    return this.skillModel.find().exec();
+    return this.skillModel.find().sort({ order: 1 }).exec();
+  }
+
+  async reorder(items: { id: string, order: number }[]): Promise<void> {
+    const bulkOps = items.map((item) => ({
+      updateOne: {
+        filter: { _id: item.id },
+        update: { $set: { order: item.order } },
+      },
+    }));
+    await this.skillModel.bulkWrite(bulkOps);
   }
 
   async findOne(id: string): Promise<SkillCategory> {

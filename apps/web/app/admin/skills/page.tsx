@@ -1,10 +1,33 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import {
+    DndContext,
+    closestCenter,
+    KeyboardSensor,
+    PointerSensor,
+    useSensor,
+    useSensors,
+    DragEndEvent
+} from '@dnd-kit/core';
+import {
+    arrayMove,
+    SortableContext,
+    sortableKeyboardCoordinates,
+    verticalListSortingStrategy,
+} from '@dnd-kit/sortable';
+import { SortableSkillCategory } from './_components/SortableSkillCategory';
 
 export default function SkillsAdminPage() {
-    const [skills, setSkills] = useState([]);
+    const [skills, setSkills] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
+
+    const sensors = useSensors(
+        useSensor(PointerSensor),
+        useSensor(KeyboardSensor, {
+            coordinateGetter: sortableKeyboardCoordinates,
+        })
+    );
 
     useEffect(() => {
         fetch('http://localhost:3001/api/skills')
@@ -14,6 +37,36 @@ export default function SkillsAdminPage() {
                 setLoading(false);
             });
     }, []);
+
+    const handleDragEnd = async (event: DragEndEvent) => {
+        const { active, over } = event;
+
+        if (active.id !== over?.id) {
+            setSkills((items) => {
+                const oldIndex = items.findIndex((item) => item._id === active.id);
+                const newIndex = items.findIndex((item) => item._id === over?.id);
+                const newItems = arrayMove(items, oldIndex, newIndex);
+
+                // Persist order to backend
+                const orderUpdates = newItems.map((item, index) => ({
+                    id: item._id,
+                    order: index
+                }));
+
+                const token = localStorage.getItem('token');
+                fetch('http://localhost:3001/api/skills/reorder', {
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${token}`,
+                    },
+                    body: JSON.stringify(orderUpdates),
+                });
+
+                return newItems;
+            });
+        }
+    };
 
     const deleteSkill = async (id: string) => {
         if (!confirm('Are you sure you want to delete this category?')) return;
@@ -42,42 +95,32 @@ export default function SkillsAdminPage() {
                     </a>
                 </div>
 
-                <div className="grid gap-6">
-                    {skills.map((skill: any) => (
-                        <div key={skill._id} className="bg-card border border-border rounded-xl p-6 shadow-sm flex justify-between items-start">
-                            <div>
-                                <h2 className="text-xl font-bold mb-2">{skill.title}</h2>
-                                <div className="flex flex-wrap gap-2">
-                                    {skill.items.map((item: any, idx: number) => (
-                                        <span key={idx} className="px-2 py-1 bg-muted rounded text-sm">
-                                            {item.name} <span className="text-muted-foreground text-xs">({item.level})</span>
-                                        </span>
-                                    ))}
-                                </div>
-                            </div>
-                            <div className="flex gap-2">
-                                <a
-                                    href={`/admin/skills/${skill._id}`}
-                                    className="px-3 py-1 text-blue-500 hover:bg-blue-50 rounded transition"
-                                >
-                                    Edit
-                                </a>
-                                <button
-                                    onClick={() => deleteSkill(skill._id)}
-                                    className="px-3 py-1 text-red-500 hover:bg-red-50 rounded transition"
-                                >
-                                    Delete
-                                </button>
-                            </div>
-                        </div>
-                    ))}
+                <DndContext
+                    sensors={sensors}
+                    collisionDetection={closestCenter}
+                    onDragEnd={handleDragEnd}
+                >
+                    <SortableContext
+                        items={skills.map(s => s._id)}
+                        strategy={verticalListSortingStrategy}
+                    >
+                        <div className="grid gap-6">
+                            {skills.map((skill: any) => (
+                                <SortableSkillCategory
+                                    key={skill._id}
+                                    skill={skill}
+                                    deleteSkill={deleteSkill}
+                                />
+                            ))}
 
-                    {skills.length === 0 && (
-                        <div className="text-center p-8 text-muted-foreground border border-dashed border-border rounded-xl">
-                            No skill categories found. Create one!
+                            {skills.length === 0 && (
+                                <div className="text-center p-8 text-muted-foreground border border-dashed border-border rounded-xl">
+                                    No skill categories found. Create one!
+                                </div>
+                            )}
                         </div>
-                    )}
-                </div>
+                    </SortableContext>
+                </DndContext>
             </div>
         </div>
     );

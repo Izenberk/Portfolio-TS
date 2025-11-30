@@ -127,14 +127,14 @@ export default function Hero(): JSX.Element {
                                 <span className="mt-2 text-foreground/70">MongoDB</span>
                             </div>
 
-                            {/* Tailwind */}
+                            {/* Linux */}
                             <div className="flex flex-col items-center text-center text-sm">
                                 <img
-                                    src="https://www.vectorlogo.zone/logos/tailwindcss/tailwindcss-icon.svg"
-                                    alt="Tailwind CSS"
+                                    src="https://img.icons8.com/color/96/linux--v1.png"
+                                    alt="Linux"
                                     className="h-10 w-10"
                                 />
-                                <span className="mt-2 text-foreground/70">Tailwind</span>
+                                <span className="mt-2 text-foreground/70">Linux</span>
                             </div>
 
                             {/* Git */}
@@ -155,6 +155,16 @@ export default function Hero(): JSX.Element {
                                     className="h-10 w-10"
                                 />
                                 <span className="mt-2 text-foreground/70">Docker</span>
+                            </div>
+
+                            {/* n8n */}
+                            <div className="flex flex-col items-center text-center text-sm">
+                                <img
+                                    src="https://cdn.simpleicons.org/n8n/FF6584"
+                                    alt="n8n"
+                                    className="h-10 w-10"
+                                />
+                                <span className="mt-2 text-foreground/70">n8n</span>
                             </div>
                         </div>
                     </motion.div>

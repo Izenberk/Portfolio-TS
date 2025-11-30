@@ -19,6 +19,12 @@ export class SkillsController {
     return this.skillsService.findAll();
   }
 
+  @Patch('reorder')
+  @UseGuards(JwtAuthGuard)
+  reorder(@Body() items: { id: string; order: number }[]) {
+    return this.skillsService.reorder(items);
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.skillsService.findOne(id);

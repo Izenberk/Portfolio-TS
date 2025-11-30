@@ -5,6 +5,8 @@ export type SkillLevel = 'Beginner' | 'Intermediate' | 'Advanced'
 export type SkillItem = {
     name: string
     level?: SkillLevel
+    icon?: string
+    description?: string
 }
 
 export type SkillCategory = {
@@ -22,6 +24,6 @@ export type ExperienceItem = {
     location?: string
     start: string           // e.g. "2024-06"
     end: string             // e.g. "Present" or "2025-02"
-    bullets: string[]
-    tech?: TechTag[]
+    description: string[]
+    tags?: string[]
 }

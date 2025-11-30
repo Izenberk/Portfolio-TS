@@ -53,13 +53,13 @@ export default function ExperienceSection({ data }: { data: ExperienceItem[] }) 
                                             </p>
                                         </header>
                                         <ul className="list-disc space-y-1 pl-5 text-sm text-white/85">
-                                            {item.bullets.map((b, i) => (
+                                            {item.description.map((b, i) => (
                                                 <li key={i}>{b}</li>
                                             ))}
                                         </ul>
-                                        {item.tech?.length ? (
+                                        {item.tags?.length ? (
                                             <div className="mt-3 flex flex-wrap gap-2">
-                                                {item.tech.map((t) => (
+                                                {item.tags.map((t) => (
                                                     <span
                                                         key={t}
                                                         className="rounded-xl border border-white/15 bg-accent/50 px-2 py-1 text-xs"

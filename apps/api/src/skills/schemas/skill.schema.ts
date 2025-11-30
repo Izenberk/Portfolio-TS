@@ -26,6 +26,9 @@ export class SkillCategory {
 
     @Prop({ type: [SkillItemSchema], default: [] })
     items: SkillItem[];
+
+    @Prop({ default: 0 })
+    order: number;
 }
 
 export const SkillCategorySchema = SchemaFactory.createForClass(SkillCategory);

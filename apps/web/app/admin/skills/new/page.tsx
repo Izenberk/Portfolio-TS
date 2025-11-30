@@ -1,28 +1,78 @@
 'use client';
 
 import { useState } from 'react';
+import {
+    DndContext,
+    closestCenter,
+    KeyboardSensor,
+    PointerSensor,
+    useSensor,
+    useSensors,
+    DragEndEvent
+} from '@dnd-kit/core';
+import {
+    arrayMove,
+    SortableContext,
+    sortableKeyboardCoordinates,
+    verticalListSortingStrategy,
+} from '@dnd-kit/sortable';
+import { SortableSkillItem } from '../_components/SortableSkillItem';
 
 export default function NewSkillPage() {
     const [title, setTitle] = useState('');
-    const [items, setItems] = useState<any[]>([{ name: '', level: 'Intermediate', icon: '', description: '' }]);
+    // Ensure items have a unique ID for dnd-kit
+    const [items, setItems] = useState<any[]>([
+        { id: 'init-1', name: '', level: 'Intermediate', icon: '', description: '' }
+    ]);
+
+    const sensors = useSensors(
+        useSensor(PointerSensor),
+        useSensor(KeyboardSensor, {
+            coordinateGetter: sortableKeyboardCoordinates,
+        })
+    );
 
     const addItem = () => {
-        setItems([...items, { name: '', level: 'Intermediate', icon: '', description: '' }]);
+        setItems([
+            ...items,
+            {
+                id: `new-${Date.now()}`,
+                name: '',
+                level: 'Intermediate',
+                icon: '',
+                description: ''
+            }
+        ]);
     };
 
     const removeItem = (index: number) => {
         setItems(items.filter((_, i) => i !== index));
     };
 
-    const updateItem = (index: number, field: 'name' | 'level' | 'icon' | 'description', value: string) => {
+    const updateItem = (index: number, field: string, value: string) => {
         const newItems = [...items];
         newItems[index] = { ...newItems[index], [field]: value };
         setItems(newItems);
     };
 
+    const handleDragEnd = (event: DragEndEvent) => {
+        const { active, over } = event;
+
+        if (active.id !== over?.id) {
+            setItems((items) => {
+                const oldIndex = items.findIndex((item) => item.id === active.id);
+                const newIndex = items.findIndex((item) => item.id === over?.id);
+                return arrayMove(items, oldIndex, newIndex);
+            });
+        }
+    };
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         const token = localStorage.getItem('token');
+
+        // Clean up IDs before sending if backend doesn't expect them (or backend ignores extra fields)
+        const cleanItems = items.map(({ id, ...rest }) => rest);
 
         const res = await fetch('http://localhost:3001/api/skills', {
             method: 'POST',
@@ -30,7 +80,7 @@ export default function NewSkillPage() {
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${token}`,
             },
-            body: JSON.stringify({ title, items }),
+            body: JSON.stringify({ title, items: cleanItems }),
         });
 
         if (res.ok) {
@@ -70,58 +120,29 @@ export default function NewSkillPage() {
                             </button>
                         </div>
 
-                        <div className="space-y-4">
-                            {items.map((item, index) => (
-                                <div key={index} className="p-4 border border-border rounded-lg bg-muted/30 space-y-3">
-                                    <div className="flex gap-2">
-                                        <input
-                                            type="text"
-                                            value={item.name}
-                                            onChange={(e) => updateItem(index, 'name', e.target.value)}
-                                            placeholder="Skill Name"
-                                            className="flex-1 px-3 py-2 rounded-lg border border-border bg-background"
-                                            required
+                        <DndContext
+                            sensors={sensors}
+                            collisionDetection={closestCenter}
+                            onDragEnd={handleDragEnd}
+                        >
+                            <SortableContext
+                                items={items.map(i => i.id)}
+                                strategy={verticalListSortingStrategy}
+                            >
+                                <div className="space-y-4">
+                                    {items.map((item, index) => (
+                                        <SortableSkillItem
+                                            key={item.id}
+                                            id={item.id}
+                                            index={index}
+                                            item={item}
+                                            updateItem={updateItem}
+                                            removeItem={removeItem}
                                         />
-                                        <select
-                                            value={item.level}
-                                            onChange={(e) => updateItem(index, 'level', e.target.value)}
-                                            className="px-3 py-2 rounded-lg border border-border bg-background"
-                                        >
-                                            <option value="Beginner">Beginner</option>
-                                            <option value="Intermediate">Intermediate</option>
-                                            <option value="Advanced">Advanced</option>
-                                            <option value="Expert">Expert</option>
-                                        </select>
-                                        <button
-                                            type="button"
-                                            onClick={() => removeItem(index)}
-                                            className="px-3 py-2 text-red-500 hover:bg-red-50 rounded-lg"
-                                            disabled={items.length === 1}
-                                        >
-                                            ✕
-                                        </button>
-                                    </div>
-
-                                    <div className="grid grid-cols-2 gap-2">
-                                        <div className="space-y-2">
-                                            <input
-                                                type="text"
-                                                value={item.icon || ''}
-                                                onChange={(e) => updateItem(index, 'icon', e.target.value)}
-                                                placeholder="Icon URL (e.g. /icons/react.svg)"
-                                                className="w-full px-3 py-2 rounded-lg border border-border bg-background text-sm"
-                                            />
-                                            <textarea
-                                                value={item.description || ''}
-                                                onChange={(e) => updateItem(index, 'description', e.target.value)}
-                                                placeholder="Description (Markdown supported)"
-                                                className="w-full px-3 py-2 rounded-lg border border-border bg-background text-sm min-h-[100px] resize-y"
-                                            />
-                                        </div>
-                                    </div>
+                                    ))}
                                 </div>
-                            ))}
-                        </div>
+                            </SortableContext>
+                        </DndContext>
                     </div>
 
                     <div className="pt-4 flex gap-4">
