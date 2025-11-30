@@ -19,8 +19,7 @@ export class SeedService {
             {
                 slug: "nextflix",
                 title: "Nextflix",
-                summary:
-                    "A Netflix-style movie discovery app built as a type-safe monorepo with Next.js (web) and NestJS (API).",
+                summary: "A Netflix-style movie discovery app built as a type-safe monorepo with Next.js (web) and NestJS (API).",
                 details: [
                     "Browse Now Playing, Popular, Top Rated, and Upcoming movies via TMDb; hero trailer with YouTube, responsive carousels, and modal detail view.",
                     "Backend API with NestJS using Clean Architecture, versioned routes (/api/v1), and Swagger docs at /docs.",
@@ -46,75 +45,127 @@ export class SeedService {
                     repo: "https://github.com/Izenberk/nextflix-web-application"
                 },
                 image: "/images/Nextflix-thumnail-1.png",
-                contributors: "Izenberk"
+                contributors: "Izenberk",
+                order: 0
             },
             {
                 slug: "hugpaw",
                 title: "HugPaw Ecommerce",
-                summary:
-                    "A Full-Stack E-Commerce Web Application built with MERN stack and Vite.",
+                summary: "A Full-Stack E-Commerce Web Application built with MERN stack and Vite.",
                 details: [
                     "Developed e-commerce web app with product catalog, shopping cart, user authentication, admin dashboard, and payment mockup.",
-                    "Collaborated in an Agile team using GitHub for version control, issue tracking, and code reviews.",
+                    "Collaborated in an Agile team using GitHub for version control, issue tracking, and code reviews."
                 ],
                 stack: ["React", "Vite", "Tailwind", "Node", "Express", "MongoDB", "shadcn/ui"],
                 links: {
                     demo: "https://hug-paw-ecommerce.vercel.app/",
-                    repo: "https://github.com/Izenberk/HugPaw-Ecommerce-Frontend",
+                    repo: "https://github.com/Izenberk/HugPaw-Ecommerce-Frontend"
                 },
                 image: "/images/hugpaw-cover.png",
                 contributors: "JSD Bootcamp Team",
-            },
+                order: 1
+            }
         ];
 
         const skills = [
             {
-                title: 'Languages',
+                title: "Languages",
                 items: [
-                    { name: 'TypeScript', level: 'Advanced' },
-                    { name: 'JavaScript (ES2023)', level: 'Advanced' },
-                    { name: 'SQL', level: 'Intermediate' },
-                    { name: 'Python', level: 'Intermediate' },
+                    { name: "TypeScript", level: "Advanced", icon: "", description: "" },
+                    { name: "JavaScript (ES2023)", level: "Advanced", icon: "", description: "" },
+                    { name: "SQL", level: "Intermediate", icon: "", description: "" },
+                    { name: "Python", level: "Intermediate", icon: "", description: "" }
                 ],
+                order: 0
             },
             {
-                title: 'Frontend',
+                title: "Backend",
                 items: [
-                    { name: 'React', level: 'Advanced' },
-                    { name: 'Vite', level: 'Advanced' },
-                    { name: 'Tailwind CSS', level: 'Advanced' },
-                    { name: 'shadcn/ui', level: 'Advanced' },
+                    { name: "Node.js", level: "Intermediate", icon: "", description: "" },
+                    { name: "Express", level: "Intermediate", icon: "", description: "" },
+                    { name: "MongoDB", level: "Intermediate", icon: "", description: "" },
+                    { name: "REST API Design", level: "Intermediate", icon: "", description: "" }
                 ],
+                order: 0
             },
             {
-                title: 'Backend',
+                title: "Testing & Tooling",
                 items: [
-                    { name: 'Node.js', level: 'Intermediate' },
-                    { name: 'Express', level: 'Intermediate' },
-                    { name: 'MongoDB', level: 'Intermediate' },
-                    { name: 'REST API Design', level: 'Intermediate' },
+                    { name: "Vitest", level: "Intermediate", icon: "", description: "" },
+                    { name: "React Testing Library", level: "Intermediate", icon: "", description: "" },
+                    { name: "ESLint + Prettier", level: "Advanced", icon: "", description: "" },
+                    { name: "Git & GitHub", level: "Advanced", icon: "", description: "" }
                 ],
+                order: 0
             },
             {
-                title: 'Testing & Tooling',
+                title: "DevOps (Basics)",
                 items: [
-                    { name: 'Vitest', level: 'Intermediate' },
-                    { name: 'React Testing Library', level: 'Intermediate' },
-                    { name: 'ESLint + Prettier', level: 'Advanced' },
-                    { name: 'Git & GitHub', level: 'Advanced' },
+                    { name: "Docker", level: "Intermediate", icon: "", description: "" },
+                    { name: "CI (GitHub Actions)", level: "Intermediate", icon: "", description: "" },
+                    { name: "Vercel", level: "Intermediate", icon: "", description: "" }
                 ],
+                order: 0
             },
             {
-                title: 'DevOps (Basics)',
+                title: "Backend & Automation",
                 items: [
-                    { name: 'Docker', level: 'Intermediate' },
-                    { name: 'CI (GitHub Actions)', level: 'Intermediate' },
-                    { name: 'Vercel', level: 'Intermediate' },
+                    { name: "Node.js", level: "Advanced", icon: "SiNodedotjs", description: "API runtime with environment-driven config and Dockerized workflows.\n\n### Applied In\n* Nextflix\n* HugPaw" },
+                    { name: "NestJS", level: "Advanced", icon: "SiNestjs", description: "Modular API with versioned routes, providers, and clean layering.\n\n### Highlights\n* Movies module with service/use-cases and TMDb client\n* Global validation pipes and URI versioning (/api/v1)\n\n### Applied In\n* Nextflix" },
+                    { name: "Express", level: "Advanced", icon: "SiExpress", description: "Routing, controllers, auth middleware, and error handling for REST APIs.\n\n### Applied In\n* HugPaw" },
+                    { name: "Swagger/OpenAPI", level: "Intermediate", icon: "SiSwagger", description: "Autogenerated API docs for faster iteration and testing at /docs.\n\n### Applied In\n* Nextflix" },
+                    { name: "n8n", level: "Intermediate", icon: "SiN8N", description: "End-to-end process automation and service orchestration.\n\n### Highlights\n* Building custom workflows with advanced conditional logic and data mapping\n* Seamlessly integrating third-party APIs with internal database systems" }
                 ],
+                order: 1
             },
+            {
+                title: "Frontend",
+                items: [
+                    { name: "React", level: "Advanced", icon: "", description: "" },
+                    { name: "Vite", level: "Advanced", icon: "", description: "" },
+                    { name: "Tailwind CSS", level: "Advanced", icon: "", description: "" },
+                    { name: "shadcn/ui", level: "Advanced", icon: "", description: "" }
+                ],
+                order: 2
+            },
+            {
+                title: "Database",
+                items: [
+                    { name: "MongoDB", level: "Advanced", icon: "SiMongodb", description: "Schema-based models (Mongoose), lean queries, and aggregations.\n\n### Applied In\n* HugPaw" },
+                    { name: "PostgreSQL", level: "Intermediate", icon: "SiPostgresql", description: "Relational modeling and analytics use-cases (separate data eng work)." }
+                ],
+                order: 3
+            },
+            {
+                title: "DevOps & Environment",
+                items: [
+                    { name: "Git", level: "Advanced", icon: "SiGit", description: "Branching, PR reviews, semantic commits, and release tagging.\n\n### Applied In\n* Nextflix\n* HugPaw" },
+                    { name: "GitHub", level: "Advanced", icon: "FaGithub", description: "Issues/Projects, code reviews, and basic CI/CD pipelines.\n\n[GitHub profile](https://github.com/Izenberk)" },
+                    { name: "Linux / Bash", level: "Advanced", icon: "SiGnubash", description: "Direct system interaction for efficient task automation and environment control.\n\n### Highlight\n* Docker & Server Management\n* Shell Scripting & Git Operations" },
+                    { name: "Docker", level: "Intermediate", icon: "SiDocker", description: "Multi-stage builds and reproducible dev/prod environments.\n\n### Applied In\n* Nextflix\n* HugPaw" },
+                    { name: "Vercel", level: "Intermediate", icon: "SiVercel", description: "Deployed frontend with preview builds and environment management.\n\n### Applied In\n* Nextflix\n* HugPaw" },
+                    { name: "Render", level: "Intermediate", icon: "SiRender", description: "Deployed backend APIs with managed SSL and env vars.\n\n### Applied In\n* Nextflix\n* HugPaw" }
+                ],
+                order: 4
+            }
         ];
 
         const experience = [
+            {
+                id: "workflow-automation-developer-2025",
+                role: "Workflow Automation Developer",
+                company: "MAX GADGET CO., LTD",
+                start: "2025-11-10",
+                end: null,
+                location: "Pak Kret, Nonthaburi, TH",
+                tags: ["Workflow Automation", "n8n", "REST APIs", "API Integration"],
+                description: [
+                    "Orchestrating end-to-end automation by combining low-code speed with custom JavaScript logic",
+                    "Building scalable integration architectures that connect internal tools with external SaaS platforms"
+                ],
+                url: "https://www.remaxthailand.co.th/",
+                order: 0
+            },
             {
                 id: "gen-th-bootcamp-2025",
                 role: "Junior Software Developer Bootcamp",
@@ -123,11 +174,12 @@ export class SeedService {
                 start: "Jun 2025",
                 end: "Sep 2025",
                 location: "Bangkok, TH",
-                bullets: [
+                description: [
                     "Developed full-stack skills with the MERN stack through hands-on, project-based learning",
-                    "Built apps end-to-end: frontend, backend, database integration, Git workflows, and Agile collaboration",
+                    "Built apps end-to-end: frontend, backend, database integration, Git workflows, and Agile collaboration"
                 ],
-                tech: ["MongoDB", "Express", "React", "Node.js", "Git", "Agile"],
+                tags: ["MongoDB", "Express", "React", "Node.js", "Git", "Agile"],
+                order: 1
             },
             {
                 id: "rhb-associate-deriv-2022-2025",
@@ -137,12 +189,13 @@ export class SeedService {
                 start: "Jul 2022",
                 end: "Apr 2025",
                 location: "Bangkok, TH",
-                bullets: [
+                description: [
                     "Collaborated across functions to manage high-stakes decisions and ensure accurate, real-time data handling",
-                    "Applied analytical thinking under pressure to interpret complex information and maintain system integrity",
+                    "Applied analytical thinking under pressure to interpret complex information and maintain system integrity"
                 ],
-                tech: ["Collaboration", "Data-driven Decisions", "Risk Management"],
-            },
+                tags: ["Collaboration", "Data-driven Decisions", "Risk Management"],
+                order: 2
+            }
         ];
 
         const results = {
