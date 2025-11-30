@@ -69,7 +69,7 @@ export class SeedService {
 
         const skills = [
             {
-                title: "Languages (The Foundation)",
+                title: "Languages",
                 items: [
                     {
                         name: "TypeScript",
@@ -103,18 +103,8 @@ export class SeedService {
                 order: 0
             },
             {
-                title: "Backend & Automation (The Logic Layer)",
+                title: "Backend & Automation",
                 items: [
-                    {
-                        name: "n8n",
-                        level: "Intermediate",
-                        icon: "SiN8N",
-                        description: `End-to-end process automation and service orchestration.
-
-### Highlights
-* Building custom workflows with advanced conditional logic and data mapping
-* Seamlessly integrating third-party APIs with internal database systems`
-                    },
                     {
                         name: "NestJS",
                         level: "Advanced",
@@ -155,12 +145,22 @@ export class SeedService {
 
 ### Applied In
 * Nextflix`
+                    },
+                    {
+                        name: "n8n",
+                        level: "Intermediate",
+                        icon: "SiN8N",
+                        description: `End-to-end process automation and service orchestration.
+
+### Highlights
+* Building custom workflows with advanced conditional logic and data mapping
+* Seamlessly integrating third-party APIs with internal database systems`
                     }
                 ],
                 order: 1
             },
             {
-                title: "Frontend Ecosystem (The User Interface)",
+                title: "Frontend",
                 items: [
                     {
                         name: "Next.js",
@@ -222,7 +222,7 @@ export class SeedService {
                 order: 2
             },
             {
-                title: "Database (The Data Layer)",
+                title: "Database",
                 items: [
                     {
                         name: "PostgreSQL",
@@ -243,7 +243,7 @@ export class SeedService {
                 order: 3
             },
             {
-                title: "DevOps & Environment (The Infrastructure)",
+                title: "DevOps & Environment",
                 items: [
                     {
                         name: "Linux / Bash",
@@ -314,34 +314,6 @@ export class SeedService {
                     }
                 ],
                 order: 4
-            },
-            {
-                title: "Other",
-                items: [
-                    {
-                        name: "DSA",
-                        level: "Advanced",
-                        icon: "SiLeetcode",
-                        description: `Focused on core algorithmic problem solving — arrays, trees, graphs, recursion, and complexity analysis.
-
-### Highlights
-* Practiced optimized patterns in LeetCode-style challenges
-* Improved reasoning and clean-code efficiency through iterative problem solving`
-                    },
-                    {
-                        name: "TMDb",
-                        level: "Intermediate",
-                        icon: "SiThemoviedatabase",
-                        description: `Integrated The Movie Database (TMDb) API for dynamic movie discovery, metadata, and media streaming previews.
-
-### Highlights
-* Used paginated endpoints (Now Playing, Popular, Top Rated, Upcoming)
-* Mapped image paths and trailers with domain-safe DTOs
-
-### Applied In
-* Nextflix`
-                    }
-                ]
             }
         ];
 
