@@ -1,69 +1,41 @@
-# React + TypeScript + Vite
+---
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 🎯 Current Task & Next Steps
 
-Currently, two official plugins are available:
+### **Phase 1: API Setup & n8n Integration**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The immediate task is to establish the backend foundation for the contact form functionality.
 
-## Expanding the ESLint configuration
+1.  **Define API Endpoint:** Create a `ContactModule` in NestJS (`apps/api`) with a **POST** endpoint at `/api/contact`.
+2.  **Database Connection:** Implement connection to MongoDB via Mongoose within NestJS.
+3.  **Core Logic:** This endpoint must perform two critical, professional-level actions:
+    * **A. Persistence:** Safely save the submission data to the MongoDB database.
+    * **B. Webhook Trigger:** Securely send a POST request (the n8n Webhook) to initiate the automation workflow.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### **Phase 2: Frontend Integration**
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+1.  **Component Migration:** Migrate existing portfolio UI components from the old codebase into the Next.js `apps/web` structure.
+2.  **Form Hookup:** Re-implement the Contact Form component to submit data to the new **NestJS API** endpoint (`/api/contact`).
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## ⚙️ Local Development Setup
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+To run both the frontend and backend concurrently:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+1.  **Install Dependencies (Root):**
+    ```bash
+    pnpm install
+    ```
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+2.  **Start the Backend (API):**
+    ```bash
+    pnpm run --filter api start:dev
+    # NestJS starts on http://localhost:3001
+    ```
+
+3.  **Start the Frontend (Web):**
+    ```bash
+    pnpm run --filter web dev
+    # Next.js starts on http://localhost:3000
+    ```
